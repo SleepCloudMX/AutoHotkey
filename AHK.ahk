@@ -334,6 +334,7 @@ Send, {Right}{Right}
 loop, 4 {
     Send, {Backspace}
 }
+return
 
 ;-------------------------------------------------
 ;按键: "img" + Enter
