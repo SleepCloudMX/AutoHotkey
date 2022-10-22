@@ -4,7 +4,7 @@
 
 我写快捷键主要是想替换掉那几个很小容易按错的上下左右键 (尤其是容易按到 PgUp 和 PgDn), 使打字更方便一点. 之后也逐渐增加了一些其它的功能.
 
-想要使用的话, 先去 [官网](https://www.autohotkey.com/) 下载 AutoHotkey (软件自带教程), 双击 AHK.ahk 文件即可运行程序. 更新: 发现了 [中文教程](https://wyagd001.github.io/zh-cn/docs/AutoHotkey.htm)
+想要使用的话, 先去 [官网](https://www.autohotkey.com/) 下载 AutoHotkey (软件自带教程), 双击 AHK.ahk 文件即可运行程序. 更新: 发现了 [中文教程](https://wyagd001.github.io/zh-cn/docs/AutoHotkey.htm).
 
 电脑每次开机时都需要运行才能使用, 如需设置开机自启, 在如下文件夹中放入 AHK.ahk 文件的快捷方式即可:
 C:\ProgramData\Microsoft\Windows\Start Menu\Programs\StartUp
@@ -28,6 +28,8 @@ AutoHotkey 的快捷键响应时间略长于系统或其它软件自带的快捷
 1. 仅输入字符时, 不建议使用自带的 Send 等命令, 因为在中文输入法下有 bug. 可以自定义函数绕开输入法 (见源文件);
 2. 有多种方式切换输入法 (见源文件), 但在某些情况下都会有点 bug (误删字符), 可以自定义快捷键调用函数切换输入法, 并在需要切换输入法的快捷键中调用这些快捷键. 我也不知道这样为什么就没有 bug 了, 但是它能跑;
 3. 最后, 如果你能正常使用字符串变量, 请浇浇我, 我使用官方文档里提供的两种定义方式, 输出结果都是空字符串.
+
+注: Self-Introduction 文件夹里的程序用于介绍 (整活) 的场合.
 
 
 
