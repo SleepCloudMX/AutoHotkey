@@ -343,7 +343,20 @@ return
 
 ::img::
 ascinput("<img src='image\.png' width=450>")
-loop, 16{
+loop, 16 {
+    Send, {Left}
+}
+return
+
+;-------------------------------------------------
+;按键: "htmlatt" + Enter
+;功能: 替换为 "<span style='background-color: #eeeeee; color: #777777'></span>"
+;并将光标移至 </span> 前
+;注: 需要等待一秒多, 期间请勿输入其它字符.
+
+::htmlant::
+ascinput("<span style='background-color: #eeeeee; color: #777777'></span>")
+loop, 7 {
     Send, {Left}
 }
 return
@@ -481,4 +494,23 @@ Send, {Left}{Right}{Backspace}  ; 取消注释
 return
 
 #IfWinActive ; sublime text
+;-------------------------------------------------
+
+
+
+;----------------arduino 专用快捷键-----------------
+;以下快捷键只在 arduino 中生效.
+;请先下载 AutoHotkey 后, 修改下方的文件路径, 再运行本程序.
+;注意 arduino 的编辑器程序不是 arduino.exe, 而是 java\bin\javaw.exe
+#IfWinActive ahk_exe D:\Software\Arduino\java\bin\javaw.exe
+
+;按键: Ctrl + L
+;功能: 选中整行 (原功能为搜索行)
+
+^l::
+;Send, {Esc}{Home}{Shift down}{End}{Right}{Shift up}            ;不选中行首缩进
+Send, {Esc}{End}{Home}{Home}{Shift down}{End}{Right}{Shift up}  ;选中行首缩进
+return
+
+#IfWinActive ; arduino
 ;-------------------------------------------------

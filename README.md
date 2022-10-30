@@ -63,7 +63,7 @@ AutoHotkey 的快捷键响应时间略长于系统或其它软件自带的快捷
 
 
 
-### 二、typora 快捷键
+### 二、Typora 快捷键
 
 ;按键: "emos"
 ;功能: 替换为 `:star:`
@@ -84,9 +84,14 @@ AutoHotkey 的快捷键响应时间略长于系统或其它软件自带的快捷
 ;功能: 替换为 `<img src='image\.png' width=450>` 并将光标移至 .png 前
 ;注: 需要等待约 1.0 秒, 期间请勿输入其它字符.
 
+;按键: "htmlatt" + Enter
+;功能: 替换为 `<span style='background-color: #eeeeee; color: #777777'></span>`
+;并将光标移至 `</span>` 前
+;注: 需要等待一秒多, 期间请勿输入其它字符.
 
 
-### 三、sublime 快捷键
+
+### 三、Sublime 快捷键
 
 ;按键: Alt + Ctrl + I/K
 ;功能: 页面上 (下) 移一行
@@ -107,3 +112,9 @@ AutoHotkey 的快捷键响应时间略长于系统或其它软件自带的快捷
 ;功能: 选中多行后同时注释或取消注释
 ;注: RAlt 表示在右边的 Alt.
 
+### 四、Arduino 快捷键
+
+;按键: Ctrl + L
+;功能: 选中整行 (原功能为搜索行)
+;注: 如果你也想写 Arduino 的快捷键,
+;注意编辑器输入页面的程序是 java\bin\javaw.exe, 而非 arduino.exe
