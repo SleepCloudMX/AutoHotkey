@@ -80,6 +80,19 @@ AutoHotkey 的快捷键响应时间略长于系统或其它软件自带的快捷
 ;功能: 分别为行内公式和取消行内公式
 ;注: 需要在设置里启用行内公式 (LaTeX 语法)
 
+;按键: Ctrl + M
+;功能: 刷新数学公式
+;注: 在 AutoHotkey 中写这个快捷键效果不佳, 不过可以直接修改 typora 的用户文件 conf.user.json, 加上这行代码即可:
+
+```json
+"keyBinding": {
+    "Refresh All Math Expressions": "Ctrl + M",
+}
+```
+
+
+
+
 ;按键: "img" + Enter
 ;功能: 替换为 `<img src='image\.png' width=450>` 并将光标移至 .png 前
 ;注: 需要等待约 1.0 秒, 期间请勿输入其它字符.
@@ -111,6 +124,8 @@ AutoHotkey 的快捷键响应时间略长于系统或其它软件自带的快捷
 ;按键: RAlt + ;/,
 ;功能: 选中多行后同时注释或取消注释
 ;注: RAlt 表示在右边的 Alt.
+
+
 
 ### 四、Arduino 快捷键
 
