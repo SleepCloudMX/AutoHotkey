@@ -376,6 +376,44 @@ loop, 7 {
 }
 return
 
+; !0::
+; str := "Hello 你好 world"
+; if (str = "") {
+;     MsgBox, 空的
+; } else {
+;     MsgBox, 非空
+; }
+; return
+
+::htmlggb::
+webstr := Clipboard
+htmlstr = 
+(
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Button With Web</title>
+</head>
+<body>
+    <button>点击查看 Geogebra 图像</button>
+    <iframe src="" width="800" height="0" allowfullscreen style="border: 1px solid #e4e4e4;border-radius: 4px;" frameborder="0"></iframe>
+</body>
+<script>
+    let src = "%webstr%"
+    document.querySelector("button").onclick = () => {
+        document.querySelector("iframe").setAttribute("src", src)
+        document.querySelector("iframe").setAttribute("height", "600")
+    }
+</script>
+</html>
+)
+Clipboard = %htmlstr%
+Send, {Ctrl down}v{Ctrl up}{Down}
+Clipboard = %webstr%    ; 有借有还, 是好文明
+return
+
 #IfWinActive ; typora
 ;-------------------------------------------------
 

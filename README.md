@@ -90,17 +90,17 @@ AutoHotkey 的快捷键响应时间略长于系统或其它软件自带的快捷
 }
 ```
 
-
-
-
-;按键: "img" + Enter
+;按键: "img" + Enter / Tab / Space
 ;功能: 替换为 `<img src='image\.png' width=450>` 并将光标移至 .png 前
 ;注: 需要等待约 1.0 秒, 期间请勿输入其它字符.
 
-;按键: "htmlatt" + Enter
+;按键: "htmlatt" + Enter / Tab / Space
 ;功能: 替换为 `<span style='background-color: #eeeeee; color: #777777'></span>`
 ;并将光标移至 `</span>` 前
 ;注: 需要等待一秒多, 期间请勿输入其它字符.
+
+;按键: "htmlggb" + Enter / Tab / Space
+;功能: 在 Geogebra 网页中复制分享链接后, 在 typora 中输入 htmlggb 并回车 (或其它按键), 则可以自动生成 HTML 代码, 显示按钮. 转为 HTML 后, 按下按钮即可在页面内显示 Geogebra 绘制的图像, 并可以交互.
 
 
 
