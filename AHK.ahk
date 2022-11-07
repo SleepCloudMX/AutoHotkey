@@ -356,7 +356,7 @@ return
 ;功能: 替换为 "<img src='image\.png' width=450>" 并将光标移至 .png 前
 ;注: 需要等待约 1.0 秒, 期间请勿输入其它字符.
 
-::img::
+::\img::
 ascinput("<img src='image\.png' width=450>")
 loop, 16 {
     Send, {Left}
@@ -364,12 +364,12 @@ loop, 16 {
 return
 
 ;-------------------------------------------------
-;按键: "htmlatt" + Enter
+;按键: "\att" + Enter
 ;功能: 替换为 "<span style='background-color: #eeeeee; color: #777777'></span>"
 ;并将光标移至 </span> 前
 ;注: 需要等待一秒多, 期间请勿输入其它字符.
 
-::htmlant::
+::\att::
 ascinput("<span style='background-color: #eeeeee; color: #777777'></span>")
 loop, 7 {
     Send, {Left}
@@ -385,7 +385,7 @@ return
 ; }
 ; return
 
-::htmlggb::
+::\ggb::
 webstr := Clipboard
 htmlstr = 
 (
