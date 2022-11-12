@@ -408,10 +408,16 @@ htmlstr =
     }
 </script>
 </html>
+
+或者直接打开[链接](%webstr%).
 )
 Clipboard = %htmlstr%
-Send, {Ctrl down}v{Ctrl up}{Down}
+Send, {Ctrl down}v{Ctrl up}
 Clipboard = %webstr%    ; 有借有还, 是好文明
+return
+
+^0::
+
 return
 
 #IfWinActive ; typora
