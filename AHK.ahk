@@ -385,40 +385,97 @@ return
 ; }
 ; return
 
+;-------------------------------------------------
+;按键: "\ggb" + Enter / Tab / Space
+;功能: 在 Geogebra 网页中复制分享链接后,
+;在 typora 中输入 htmlggb 并回车 (或其它按键),
+;则可以自动生成 HTML 代码, 显示按钮.
+;转为 HTML 后, 按下按钮即可在页面内显示 Geogebra 绘制的图像, 并可以交互.
+;注: 同一文件中如果想多次使用同一图像, 请使用 \ggbdef 自定义编号, 否则只有第一个有效.
+
 ::\ggb::
 webstr := Clipboard
+webpart := SubStr(webstr, 37)
 htmlstr = 
 (
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Button With Web</title>
-</head>
-<body>
-    <button>点击查看 Geogebra 图像</button>
-    <iframe src="" width="800" height="0" allowfullscreen style="border: 1px solid #e4e4e4;border-radius: 4px;" frameborder="0"></iframe>
-</body>
-<script>
-    let src = "%webstr%"
-    document.querySelector("button").onclick = () => {
-        document.querySelector("iframe").setAttribute("src", src)
-        document.querySelector("iframe").setAttribute("height", "600")
-    }
-</script>
-</html>
-
-或者直接打开[链接](%webstr%).
+<div>
+    <button id="btn-%webpart%">
+        点击查看 Geogebra 图像
+    </button>
+    &emsp;或直接打开<a href="%webstr%">
+        网页链接
+    </a>
+    <iframe src="" width="800" height="0" allowfullscreen style="border: 1px solid #e4e4e4;border-radius: 4px;" frameborder="0" id="ifm-%webpart%"></iframe>
+    <script>
+        var src_%webpart% = "%webstr%";
+        var btnId_%webpart% = "#btn-%webpart%";
+        var ifmId_%webpart% = "#ifm-%webpart%";
+        var btn_%webpart% = document.querySelector(btnId_%webpart%);
+        var ifm_%webpart% = document.querySelector(ifmId_%webpart%);
+        btn_%webpart%.onclick = () => {
+            if (btn_%webpart%.innerHTML == "点击查看 Geogebra 图像") {
+                btn_%webpart%.innerHTML = "点击关闭 Geogebra 图像";
+                ifm_%webpart%.setAttribute("src", src_%webpart%);
+                ifm_%webpart%.setAttribute("height", "600");
+            } else {
+                btn_%webpart%.innerHTML = "点击查看 Geogebra 图像";
+                ifm_%webpart%.setAttribute("src", "");
+                ifm_%webpart%.setAttribute("height", "0");
+            }
+        }
+    </script>
+</div>
 )
 Clipboard = %htmlstr%
-Send, {Ctrl down}v{Ctrl up}
+Send, {Ctrl down}v{Ctrl up}{Down}
 Clipboard = %webstr%    ; 有借有还, 是好文明
 return
 
-^0::
+;-------------------------------------------------
+;按键: "\ggbdef" + Enter / Tab / Space
+;功能: 在 \ggb 的基础上自定义图像的编号.
+;注: 如果想在同一文件中多次使用同一图像, 请使用这个快捷键并自定义不同编号.
 
+::\ggbdef::
+webstr := Clipboard
+webpart := ""
+InputBox, webpart, 自定义编号, 请输入图像的自定义编号 (建议数字或字母)
+htmlstr = 
+(
+<div>
+    <button id="btn-%webpart%">
+        点击查看 Geogebra 图像
+    </button>
+    &emsp;或直接打开<a href="%webstr%">
+        网页链接
+    </a>
+    <iframe src="" width="800" height="0" allowfullscreen style="border: 1px solid #e4e4e4;border-radius: 4px;" frameborder="0" id="ifm-%webpart%"></iframe>
+    <script>
+        var src_%webpart% = "%webstr%";
+        var btnId_%webpart% = "#btn-%webpart%";
+        var ifmId_%webpart% = "#ifm-%webpart%";
+        var btn_%webpart% = document.querySelector(btnId_%webpart%);
+        var ifm_%webpart% = document.querySelector(ifmId_%webpart%);
+        btn_%webpart%.onclick = () => {
+            if (btn_%webpart%.innerHTML == "点击查看 Geogebra 图像") {
+                btn_%webpart%.innerHTML = "点击关闭 Geogebra 图像";
+                ifm_%webpart%.setAttribute("src", src_%webpart%);
+                ifm_%webpart%.setAttribute("height", "600");
+            } else {
+                btn_%webpart%.innerHTML = "点击查看 Geogebra 图像";
+                ifm_%webpart%.setAttribute("src", "");
+                ifm_%webpart%.setAttribute("height", "0");
+            }
+        }
+    </script>
+</div>
+)
+Clipboard = %htmlstr%
+Send, {Ctrl down}v{Ctrl up}{Down}
+Clipboard = %webstr%    ; 有借有还, 是好文明
 return
+
+
 
 #IfWinActive ; typora
 ;-------------------------------------------------
