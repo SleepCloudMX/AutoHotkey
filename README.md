@@ -83,16 +83,6 @@ AutoHotkey 的快捷键响应时间略长于系统或其它软件自带的快捷
 ;功能: 分别为行内公式和取消行内公式
 ;注: 需要在设置里启用行内公式 (LaTeX 语法)
 
-;按键: Ctrl + M
-;功能: 刷新数学公式
-;注: 在 AutoHotkey 中写这个快捷键效果不佳, 不过可以直接修改 typora 的用户文件 conf.user.json, 加上这行代码即可:
-
-```json
-"keyBinding": {
-    "Refresh All Math Expressions": "Ctrl + M",
-}
-```
-
 ;按键: "\img" + Enter / Tab / Space
 ;功能: 替换为 `<img src='image\.png' width=450>` 并将光标移至 .png 前
 ;注: 需要等待约 1.0 秒, 期间请勿输入其它字符.
@@ -112,6 +102,18 @@ AutoHotkey 的快捷键响应时间略长于系统或其它软件自带的快捷
 ;按键: "\ggbdef" + Enter / Tab / Space
 ;功能: 在 \ggb 的基础上自定义图像的编号.
 ;注: 如果想在同一文件中多次使用同一图像, 请使用这个快捷键并自定义不同编号.
+
+
+
+### 二'、Typora 快捷键 \(软件内定义\)
+
+```json
+"keyBinding": {
+    "Always on Top": "Ctrl+Alt+T",                  // 保持顶端 (默认)
+    "Refresh All Math Expressions": "Ctrl + M",     // 刷新数学公式
+    "Toggle Task Status": "Alt + Ctrl + C",         // 切换任务状态
+}
+```
 
 
 
