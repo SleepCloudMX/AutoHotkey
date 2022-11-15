@@ -354,10 +354,14 @@ return
 ;-------------------------------------------------
 ;按键: "img" + Enter
 ;功能: 替换为 "<img src='image\.png' width=450>" 并将光标移至 .png 前
-;注: 需要等待约 1.0 秒, 期间请勿输入其它字符.
+;注: 需要等待约 1.0 秒, 期间请勿输入其它字符. (已修复)
 
 ::\img::
-ascinput("<img src='image\.png' width=450>")
+imgstr := "<img src='image\.png' width=450>"
+temp := Clipboard
+Clipboard := imgstr
+Send, {Ctrl down}v{Ctrl up}
+Clipboard := temp
 loop, 16 {
     Send, {Left}
 }
@@ -370,7 +374,11 @@ return
 ;注: 需要等待一秒多, 期间请勿输入其它字符.
 
 ::\att::
-ascinput("<span style='background-color: #eeeeee; color: #777777'></span>")
+attstr := "<span style='background-color: #eeeeee; color: #777777'></span>"
+temp := Clipboard
+Clipboard := attstr
+Send, {Ctrl down}v{Ctrl up}
+Clipboard := temp
 loop, 7 {
     Send, {Left}
 }
