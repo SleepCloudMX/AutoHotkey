@@ -1,21 +1,21 @@
 ﻿;------------------全局变量与函数定义------------------
-
 ;切换输入法的函数
 ;切换为英文输入法: SwitchIME(0x04090409)
 ;切换为中文输入法: SwitchIME(00000804)
-SwitchIME(dwLayout){
-    HKL:=DllCall("LoadKeyboardLayout", Str, dwLayout, UInt, 1)
-    ControlGetFocus,ctl,A
-    SendMessage,0x50,0,HKL,%ctl%,A
+SwitchIME(dwLayout) {
+    HKL := DllCall("LoadKeyboardLayout", Str, dwLayout, UInt, 1)
+    ControlGetFocus, ctl, A
+    SendMessage, 0x50, 0, HKL, %ctl%, A
 }
 
 ;或者直接使用以下命令也可以切换输入法
 ;PostMessage, 0x50, 0, 0x4090409, , A
 ;PostMessage, 0x50, 0, 00000804, , A
 
+;-------------------------------------------------
 ;绕过输入法直接输入字符
 ;说明: 在 QQ 聊天窗口中是乱码，需要发送 UTF-16BE 编码
-ascinput(string){
+ascinput(string) {
     u :=  A_IsUnicode ? 2 : 1 ;Unicode 版 ahk 字符长度是 2
     length := StrPut(string, "CP0")
     if (A_IsUnicode){
@@ -41,8 +41,9 @@ ascinput(string){
     }
 }
  
- 
-ascaltinput(string){
+
+
+ascaltinput(string) {
     u :=  A_IsUnicode ? 2 : 1 ;Unicode 版 ahk 字符长度是 2
     length := StrPut(string, "CP0")
     if (A_IsUnicode){
@@ -71,6 +72,46 @@ ascaltinput(string){
         send, {AltDown}%str%{Altup}
         str =
     }
+}
+
+;-------------------------------------------------
+; 检查变量名是否合法的函数
+; 允许使用字母、数字、非 ASCII 字符和 # $ @ _
+; 可以以数字开头, 不区分大小写, 不超过 253 个字符
+isValidVarName(str, maxLen := 253) {
+    if ((str == "") || (strlen(str) > maxLen)) {
+        return false
+    }
+    Loop, Parse, str
+    {   ; 这个花括号不能放在上一行
+        ch := Asc(A_LoopField)
+        isCharValid := false
+        if (48 <= ch && ch <= 57) {
+            isCharValid := true     ; 数字
+        } else if (65 <= ch && ch <= 90) {
+            isCharValid := true     ; 大写字母
+        } else if (97 <= ch && ch <= 122) {
+            isCharValid := true     ; 小写字母
+        } else if (ch == 35 || ch == 36 || ch == 64 || ch == 95) {
+            ifCharValid := true     ; # $ @ _
+        } ; 数字开头是云讯的
+
+        if (isCharValid == false) {
+            return false
+        }
+    }
+    return true
+}
+
+; 如果快字符串处理过程中发现数据异常而被迫终止,
+; 可以用下面这个函数清空热字串的输入
+clearHotStringCMD() {
+    temp := Clipboard
+    Send, {Ctrl down}lc{Ctrl up}
+    if (Clipboard != "") {
+        Send, {Backspace}
+    }
+    Clipboard := temp
 }
 
 
@@ -384,15 +425,6 @@ loop, 7 {
 }
 return
 
-; !0::
-; str := "Hello 你好 world"
-; if (str = "") {
-;     MsgBox, 空的
-; } else {
-;     MsgBox, 非空
-; }
-; return
-
 ;-------------------------------------------------
 ;按键: "\ggb" + Enter / Tab / Space
 ;功能: 在 Geogebra 网页中复制分享链接后,
@@ -403,6 +435,15 @@ return
 
 ::\ggb::
 webstr := Clipboard
+webprefix := "https://www.geogebra.org/calculator"
+if (InStr(webstr, webprefix, false) != 1) {
+    InputBox, webstr, 输入链接, 剪切板无正确的 Geogebra 图像链接!`n请复制链接后重新使用热字串.`n或者直接输入 Geogebra 绘图链接:`n如 "https://www.geogebra.org/calculator" (无需添加双引号).
+}
+if (InStr(webstr, webprefix, false) != 1) {
+    MsgBox, 输入内容不是正确的链接!
+    clearHotStringCMD()
+    return
+}
 webpart := SubStr(webstr, 37)
 htmlstr = 
 (
@@ -446,8 +487,21 @@ return
 
 ::\ggbdef::
 webstr := Clipboard
+if (InStr(webstr, webprefix, false) != 1) {
+    InputBox, webstr, 输入链接, 剪切板无正确的 Geogebra 图像链接!`n请复制链接后重新使用热字串.`n或者直接输入 Geogebra 绘图链接:`n如 "https://www.geogebra.org/calculator" (无需添加双引号).
+}
+if (InStr(webstr, webprefix, false) != 1) {
+    MsgBox, 输入内容不是正确的链接!
+    clearHotStringCMD()
+    return
+}
 webpart := ""
-InputBox, webpart, 自定义编号, 请输入图像的自定义编号 (建议数字或字母)
+InputBox, webpart, 自定义编号, 请输入图像的自定义编号.`n允许使用字母、数字、非 ASCII 字符和 '#'、'$'、'@'、'_'.`n可以以数字开头，不区分大小写，不超过 249 个字符.
+if (isValidVarName(webpart, 253 - 4) == false) {
+    MsgBox, 编号无效!
+    clearHotStringCMD()
+    return
+}
 htmlstr = 
 (
 <div>

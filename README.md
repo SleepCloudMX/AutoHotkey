@@ -41,67 +41,94 @@ C:\ProgramData\Microsoft\Windows\Start Menu\Programs\StartUp
 
 ### 一、通用快捷键
 
-;按键: Alt + I/J/K/L
-;功能: 上下左右
-
-;按键: Alt + H/;
-;功能: 行首行尾
-
-;按键: Alt + Shift + I/J/K/L
-;功能: 选中字符
-
-;按键: Alt + Shift + H/;
-;功能: 选中这一行之前或之后的字符
-
-;按键: Alt + Ctrl + J/L
-;功能: 跨词移动
-
-;按键: Alt + Ctrl + H/;
-;功能: 文档的开始或结尾
-;注: 等价于原来的 PgUp 和 PgDn
-
-;按键: PgUp / PgDn
-;功能: 无
-;因为容易误触，就禁了这两个烦人的键.
+1. 按键: Alt + I/J/K/L
+   功能: 上下左右
+2. 按键: Alt + H/;
+   功能: 行首行尾
+3. 按键: Alt + Shift + I/J/K/L
+   功能: 选中字符
+4. 按键: Alt + Shift + H/;
+   功能: 选中这一行之前或之后的字符
+5. 按键: Alt + Ctrl + J/L
+   功能: 跨词移动
+6. 按键: Alt + Ctrl + H/;
+   功能: 文档的开始或结尾
+   注: 等价于原来的 PgUp 和 PgDn
+7. 按键: PgUp / PgDn
+   功能: 无
+   因为容易误触，就禁了这两个烦人的键.
 
 
 
 ### 二、Typora 快捷键
 
-;按键: "emos"
-;功能: 替换为 `:star:`
-;按键: "emoc"
-;功能: 替换为 `:crescent_moon:`
-;注: 以上是为了方便在 typora 中输入常用 emoji 而设置的热字符串.
-;别问, 问就是我喜欢星星和月亮.
+1. 按键: "emos"
 
-;按键: Ctrl + Alt + 1~7
-;功能: 修改为 HTML 样式的小标题, 其中 7 为正文
-;注: 由于 HTML 输入环境的影响, 只能用了一个奇怪的顺序了.
+   功能: 替换为 `:star:`
 
-;按键: Alt + M 和 Alt + Shift + M
-;功能: 分别为行内公式和取消行内公式
-;注: 需要在设置里启用行内公式 (LaTeX 语法)
+2. 按键: "emoc"
 
-;按键: "\img" + Enter / Tab / Space
-;功能: 替换为 `<img src='image\.png' width=450>` 并将光标移至 .png 前
-;注: 需要等待约 1.0 秒, 期间请勿输入其它字符.
+   功能: 替换为 `:crescent_moon:`
 
-;按键: "\att" + Enter / Tab / Space
-;功能: 替换为 `<span style='background-color: #eeeeee; color: #777777'></span>`
-;并将光标移至 `</span>` 前
-;注: 需要等待一秒多, 期间请勿输入其它字符.
+   注: 以上是为了方便在 typora 中输入常用 emoji 而设置的热字符串.
 
-;按键: "\ggb" + Enter / Tab / Space
-;功能: 在 Geogebra 网页中复制分享链接后,
-;在 typora 中输入 htmlggb 并回车 (或其它按键),
-;则可以自动生成 HTML 代码, 显示按钮.
-;转为 HTML 后, 按下按钮即可在页面内显示 Geogebra 绘制的图像, 并可以交互.
-;注: 同一文件中如果想多次使用同一图像, 请使用 \ggbdef 自定义编号, 否则只有第一个有效.
+   别问, 问就是我喜欢星星和月亮.
 
-;按键: "\ggbdef" + Enter / Tab / Space
-;功能: 在 \ggb 的基础上自定义图像的编号.
-;注: 如果想在同一文件中多次使用同一图像, 请使用这个快捷键并自定义不同编号.
+3. 按键: Ctrl + Alt + 1~7
+
+   功能: 修改为 HTML 样式的小标题, 其中 7 为正文
+
+   注: 由于 HTML 输入环境的影响, 只能用了一个奇怪的顺序了.
+
+4. 按键: Alt + M 和 Alt + Shift + M
+
+   功能: 分别为行内公式和取消行内公式
+
+   注: 需要在设置里启用行内公式 (LaTeX 语法)
+
+5. 按键: "\img" + Enter / Tab / Space
+
+   功能: 替换为 `<img src='image\.png' width=450>` 并将光标移至 .png 前
+
+   注: 需要等待约半秒, 期间请勿输入其它字符.
+
+6. 按键: "\att" + Enter / Tab / Space
+
+   功能: 替换为
+
+   ```html
+   <span style='background-color: #eeeeee; color: #777777'></span>
+   ```
+
+   并将光标移至 `</span>` 前
+
+   注: 需要等待一秒多, 期间请勿输入其它字符.
+
+7. 按键: "\ggb" + Enter / Tab / Space
+
+   功能:
+
+   1. 在 Geogebra 网页中复制分享链接后, 在 typora 中输入 `\ggb` 并回车 (或按 tab 或空格), 则可以自动生成 HTML 代码, 显示按钮.
+   2. 转为 HTML 后, 按下按钮即可在页面内显示 Geogebra 绘制的图像, 再次按下可以关闭图像. 也可以点击旁边的链接直接打开网页.
+
+   注意:
+
+   1. 同一文件中如果想多次使用同一图像, 请使用 `\ggbdef` 自定义编号, 否则只有第一个有效.
+   2. 该快捷键有数据检查与异常处理.
+      1. 如果剪切板中无合法的图像链接, 则会跳出输入框, 获取用户输入.
+      2. 如果输入的链接也不是图像链接的话, 则会在提示后清空热字串输入命令并返回.
+   3. 如果使用获取输入的功能, 注意 HTML 代码会输出到当前窗口, 而不一定是在 typora 中.
+
+8. 按键: "\ggbdef" + Enter / Tab / Space
+
+   功能: 在 `\ggb` 的基础上自定义图像的编号.
+
+   注意:
+
+   1. 如果想在同一文件中多次使用同一图像, 请使用这个快捷键并自定义不同编号. 编号的要求见使用时跳出的对话框.
+   2. 该快捷键有数据检查与异常处理.
+      1. 如果剪切板中无合法的图像链接, 则会执行与 `\ggb` 相同的异常处理程序.
+      2. 如果自定义编号不符合要求, 则会在提示后清空热字串输入命令并返回.
 
 
 
@@ -119,30 +146,39 @@ C:\ProgramData\Microsoft\Windows\Start Menu\Programs\StartUp
 
 ### 三、Sublime 快捷键
 
-;按键: Alt + Ctrl + I/K
-;功能: 页面上 (下) 移一行
-;注: 等价于 Ctrl + Alt + 上/下
+1. 按键: Alt + Ctrl + I/K
 
-;按键: Ctrl + Shift + I/K
-;功能: 上下两行互换位置
-;注: 等价于 Ctrl + Shift + 上/下.
-;在 sublime text 里原为 indent 和 reindent 的效果,
-;但可以用 Tab 和 Shift + Tab 替代;
-;方便起见, 这里的上下左右不用再按 Alt.
+   功能: 页面上 (下) 移一行
 
-;按键: Alt + Ctrl + 1~7
-;功能: 修改为 HTML 样式的小标题, 其中 7 为正文
-;注: 在 sublime 中为正常的输入顺序.
+   注: 等价于 Ctrl + Alt + 上/下
 
-;按键: RAlt + ;/,
-;功能: 选中多行后同时注释或取消注释
-;注: RAlt 表示在右边的 Alt.
+2. 按键: Ctrl + Shift + I/K
+
+   功能: 上下两行互换位置
+
+   注:
+
+   1. 等价于 Ctrl + Shift + 上/下. 在 sublime text 里原为 indent 和 reindent 的效果, 不过它们可以用 Tab 和 Shift + Tab 替代.
+   2. 为方便起见, 这里的上下左右不用再按 Alt.
+
+3. 按键: Alt + Ctrl + 1~7
+
+   功能: 修改为 HTML 样式的小标题, 其中 7 为正文
+
+   注: 在 sublime 中为正常的输入顺序.
+
+4. 按键: RAlt + ;/,
+
+   功能: 选中多行后同时注释或取消注释
+
+   注: RAlt 表示在右边的 Alt.
 
 
 
 ### 四、Arduino 快捷键
 
-;按键: Ctrl + L
-;功能: 选中整行 (原功能为搜索行)
-;注: 如果你也想写 Arduino 的快捷键,
-;注意编辑器输入页面的程序是 java\bin\javaw.exe, 而非 arduino.exe
+1. 按键: Ctrl + L
+
+   功能: 选中整行 (原功能为搜索行)
+
+   注: 如果你也想写 Arduino 的快捷键, 注意编辑器输入页面的程序是 java\bin\javaw.exe, 而非 arduino.exe
