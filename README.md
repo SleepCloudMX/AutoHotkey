@@ -109,7 +109,7 @@ C:\ProgramData\Microsoft\Windows\Start Menu\Programs\StartUp
    功能:
 
    1. 在 Geogebra 网页中复制分享链接后, 在 typora 中输入 `\ggb` 并回车 (或按 tab 或空格), 则可以自动生成 HTML 代码, 显示按钮.
-   2. 转为 HTML 后, 按下按钮即可在页面内显示 Geogebra 绘制的图像, 再次按下可以关闭图像. 也可以点击旁边的链接直接打开网页.
+   2. 转为 HTML 后, 按下按钮即可在页面内显示 Geogebra 绘制的图像 (第一次打开需要双击), 再次按下可以关闭图像. 也可以点击旁边的链接直接打开网页.
 
    注意:
 
