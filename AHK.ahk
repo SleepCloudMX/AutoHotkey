@@ -103,6 +103,7 @@ isValidVarName(str, maxLen := 253) {
     return true
 }
 
+;-------------------------------------------------
 ; 如果快字符串处理过程中发现数据异常而被迫终止,
 ; 可以用下面这个函数清空热字串的输入
 clearHotStringCMD() {
@@ -220,6 +221,40 @@ return
 
 PgUp::return
 PgDn::return
+
+;-------------------------------------------------
+;按键: LShift + 滚轮上下滚动
+;功能: 页面向左向右滚动
+
+~LShift & WheelUp::  ; 向左滚动.
+ControlGetFocus, fcontrol, A
+SendMessage, 0x0114, 0, 0, %fcontrol%, A  ; 0x0114 是 WM_HSCROLL, 它后面的 0 是 SB_LINELEFT.
+return
+
+~LShift & WheelDown::  ; 向右滚动.
+ControlGetFocus, fcontrol, A
+SendMessage, 0x0114, 1, 0, %fcontrol%, A  ; 0x0114 是 WM_HSCROLL, 它后面的 1 是 SB_LINERIGHT.
+return
+
+;-------------------------------------------------
+;按键: RShift + w/a/s/d
+;功能: 页面向上/左/下/右滚动
+
+>+w::
+Send, {WheelUp}
+return
+
+>+s::
+Send, {WheelDown}
+return
+
+>+a::
+Send, {WheelLeft}
+return
+
+>+d::
+Send, {WheelRight}
+return
 
 
 
@@ -669,6 +704,25 @@ return
 >!'::
 Send, {Ctrl down}{Shift down}L{Shift up}{Ctrl up}   ; 选中多行
 Send, {Left}{Right}{Backspace}  ; 取消注释
+return
+
+;-------------------------------------------------
+;按键: LShift + 滚轮上下滚动
+;功能: 页面向左向右滚动
+;注: 在 sublime (文本编辑器) 中移动的速度与浏览器中不同
+
+~LShift & WheelUp::  ; 向左滚动.
+ControlGetFocus, fcontrol, A
+loop, 3 {
+    SendMessage, 0x0114, 0, 0, %fcontrol%, A  ; 0x0114 是 WM_HSCROLL, 它后面的 0 是 SB_LINELEFT.
+}
+return
+
+~LShift & WheelDown::  ; 向右滚动.
+ControlGetFocus, fcontrol, A
+loop, 3 {
+    SendMessage, 0x0114, 1, 0, %fcontrol%, A  ; 0x0114 是 WM_HSCROLL, 它后面的 1 是 SB_LINERIGHT.
+}
 return
 
 #IfWinActive ; sublime text
