@@ -85,6 +85,12 @@ C:\ProgramData\Microsoft\Windows\Start Menu\Programs\StartUp
 
    注: 因为我触控板经常失灵, 就用这个快捷键了
 
+10. 按键: Esc + LShift
+
+   功能: 最小化任意页面.
+
+   注: 建议按下 Esc 后按 LShift, 不过先按 LShift 也是可以的. 在一些软件中, Esc 用于关闭应用内小窗, 所以这里加上了 LShift.
+
 
 
 ### 二、Typora 快捷键

@@ -256,6 +256,15 @@ return
 Send, {WheelRight}
 return
 
+;-------------------------------------------------
+;按键: Esc + LShift
+;功能: 最小化任意页面
+;注: 建议按下 Esc 后按 LShift, 不过先按 LShift 也是可以的
+
+~LShift & Esc::
+~Esc & LShift::
+Send, {Shift up}{Alt down}{Space}n{Alt up}
+return
 
 
 
