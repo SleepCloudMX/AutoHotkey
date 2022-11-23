@@ -442,14 +442,14 @@ return
 ;注: 需要等待约 1.0 秒, 期间请勿输入其它字符. (已修复)
 
 ::\img::
-imgstr := "<img src='image\.png' width=450>"
+imgstr_1 := "<img src='image\"
+imgstr_2 := ".png' width=450>"
 temp := Clipboard
-Clipboard := imgstr
+Clipboard := imgstr_2
+Send, {Ctrl down}v{Ctrl up}{Home}
+Clipboard := imgstr_1
 Send, {Ctrl down}v{Ctrl up}
 Clipboard := temp
-loop, 16 {
-    Send, {Left}
-}
 return
 
 ;-------------------------------------------------
@@ -459,14 +459,14 @@ return
 ;注: 需要等待一秒多, 期间请勿输入其它字符.
 
 ::\att::
-attstr := "<span style='background-color: #eeeeee; color: #777777'></span>"
+attstr_1 := "</span>"
+attstr_2 := "<span style='background-color: #eeeeee; color: #777777'>"
 temp := Clipboard
-Clipboard := attstr
+Clipboard := attstr_1
+Send, {Ctrl down}v{Ctrl up}{Home}
+Clipboard := attstr_2
 Send, {Ctrl down}v{Ctrl up}
 Clipboard := temp
-loop, 7 {
-    Send, {Left}
-}
 return
 
 ;-------------------------------------------------

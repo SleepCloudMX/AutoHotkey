@@ -123,7 +123,7 @@ C:\ProgramData\Microsoft\Windows\Start Menu\Programs\StartUp
 
    功能: 替换为 `<img src='image\.png' width=450>` 并将光标移至 .png 前
 
-   注: 需要等待约半秒, 期间请勿输入其它字符.
+   注: ~~需要等待约半秒, 期间请勿输入其它字符~~. 已解决延迟的问题, 但如果电脑本身运行慢, 则会替换为原剪切板里的内容.
 
 6. 按键: "\att" + Enter / Tab / Space
 
@@ -135,7 +135,7 @@ C:\ProgramData\Microsoft\Windows\Start Menu\Programs\StartUp
 
    并将光标移至 `</span>` 前
 
-   注: 需要等待一秒多, 期间请勿输入其它字符.
+   注: ~~需要等待约半秒, 期间请勿输入其它字符~~. 已解决延迟的问题, 但如果电脑本身运行慢, 则会替换为原剪切板里的内容.
 
 7. 按键: "\ggb" + Enter / Tab / Space
 
@@ -167,11 +167,13 @@ C:\ProgramData\Microsoft\Windows\Start Menu\Programs\StartUp
 
 ### 二'、Typora 快捷键 \(软件内定义\)
 
+文件 - 偏好设置 - 打开高级设置 - conf.user.json 文件:
+
 ```json
 "keyBinding": {
-    "Always on Top": "Ctrl+Alt+T",                  // 保持顶端 (默认)
-    "Refresh All Math Expressions": "Ctrl + M",     // 刷新数学公式
-    "Toggle Task Status": "Alt + Ctrl + C",         // 切换任务状态
+    "Always on Top": "Alt + Ctrl + T",             // 保持顶端 (默认)
+    "Refresh All Math Expressions": "Ctrl + M",    // 刷新数学公式
+    "Toggle Task Status": "Alt + C",               // 切换任务状态
 }
 ```
 
