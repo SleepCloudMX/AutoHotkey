@@ -619,12 +619,13 @@ if (InStr(Clipboard, colorPrefix, false) = 1) {
 
 textColor := ""
 InputBox, textColor, 设置颜色, 请输入颜色，可以用颜色的英文名或十六进制颜色码.`n 若不输入任何内容，则默认为黑色., SHOW, , , , , , , blue
-if (textColor = "" or textColor = " " or textColor = "  ") {
-    ; 若为空字符串, 则不作处理
+if (textColor = "" or textColor = " " or textColor = "  " or textColor = "``") {
+    ; 若为空字符串, 则不作处理, 并且没有 {Left 7}
+    Send, {Ctrl down}v{Ctrl up}
 } else {
     Clipboard := "<font color=" textColor ">" Clipboard "</font>"
+    Send, {Ctrl down}v{Ctrl up}{Left 7}
 }
-Send, {Ctrl down}v{Ctrl up}{Left 7}
 
 Clipboard := temp
 return
