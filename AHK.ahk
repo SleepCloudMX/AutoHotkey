@@ -629,6 +629,25 @@ Send, {Ctrl down}v{Ctrl up}{Left 7}
 Clipboard := temp
 return
 
+;-------------------------------------------------
+;按键: CapsLock + C
+;功能: 恢复文字默认颜色
+;具体说明见 README
+
+~CapsLock & v::
+temp := Clipboard
+Clipboard := ""
+Send, {Ctrl down}c{Ctrl up}
+
+colorPrefix := "<font color="
+if (InStr(Clipboard, colorPrefix, false) = 1) {
+    Clipboard := clearHTML(Clipboard)
+} ; 若为 HTML 代码, 则取消 HTML 格式
+Send, {Ctrl down}v{Ctrl up}
+
+Clipboard := temp
+return
+
 
 
 #IfWinActive ; typora
