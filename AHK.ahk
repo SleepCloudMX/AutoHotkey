@@ -115,6 +115,25 @@ clearHotStringCMD() {
     Clipboard := temp
 }
 
+;-------------------------------------------------
+;取消字符串的 HTML 格式
+clearHTML(str) {
+    num := 0
+    Loop, parse, str, >     ; 此时大括号不能放在这一行
+    {
+        if (num = 1) {
+            str := A_LoopField
+            break
+        }
+        num := num + 1
+    }
+    Loop, parse, str, <
+    {
+        str := A_LoopField
+        return str
+    }
+}
+
 
 
 ;------------------热键与热字符串-------------------
@@ -476,6 +495,7 @@ return
 ;则可以自动生成 HTML 代码, 显示按钮.
 ;转为 HTML 后, 按下按钮即可在页面内显示 Geogebra 绘制的图像, 并可以交互.
 ;注: 同一文件中如果想多次使用同一图像, 请使用 \ggbdef 自定义编号, 否则只有第一个有效.
+;具体说明见 README
 
 ::\ggb::
 webstr := Clipboard
@@ -528,6 +548,7 @@ return
 ;按键: "\ggbdef" + Enter / Tab / Space
 ;功能: 在 \ggb 的基础上自定义图像的编号.
 ;注: 如果想在同一文件中多次使用同一图像, 请使用这个快捷键并自定义不同编号.
+;具体说明见 README
 
 ::\ggbdef::
 webstr := Clipboard
@@ -579,6 +600,33 @@ htmlstr =
 Clipboard = %htmlstr%
 Send, {Ctrl down}v{Ctrl up}{Down}
 Clipboard = %webstr%    ; 有借有还, 是好文明
+return
+
+;-------------------------------------------------
+;按键: CapsLock + C
+;功能: 修改文字颜色
+;具体说明见 README
+
+~CapsLock & c::
+temp := Clipboard
+Clipboard := ""     ; 这是为了防止用户没有选中文字
+Send, {Ctrl down}c{Ctrl up}
+
+colorPrefix := "<font color="
+if (InStr(Clipboard, colorPrefix, false) = 1) {
+    Clipboard := clearHTML(Clipboard)
+} ; 若已为 HTML 代码, 则取消 HTML 格式
+
+textColor := ""
+InputBox, textColor, 设置颜色, 请输入颜色，可以用颜色的英文名或十六进制颜色码.`n 若不输入任何内容，则默认为黑色., SHOW, , , , , , , blue
+if (textColor = "" or textColor = " " or textColor = "  ") {
+    ; 若为空字符串, 则不作处理
+} else {
+    Clipboard := "<font color=" textColor ">" Clipboard "</font>"
+}
+Send, {Ctrl down}v{Ctrl up}{Left 7}
+
+Clipboard := temp
 return
 
 
