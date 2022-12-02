@@ -321,96 +321,155 @@ return
 ;功能: 修改为 HTML 样式的小标题, 其中 7 为正文
 
 !^1::
-Send, {end}
-ascinput("</h1>")
-Send, {home}
-ascinput("h1>")
-Send, {home}
-ascinput("<")
-Send, {end}
-Loop, 5 {
-    Send, {Left}
+clipTemp := Clipboard
+Clipboard := ""     ; 这是好习惯 (不然电脑卡顿会很难受...)
+
+Send, {Ctrl down}lc{Ctrl up}
+titlePrefix := "<h"    ; 注意到用户可能会用 <h1> 或 <h2 align="center">
+thisTitlePrefix := "<h1"
+if (InStr(Clipboard, thisTitlePrefix, false) = 1) {
+    Clipboard := clearHTML(Clipboard)
+} else if (InStr(Clipboard, titlePrefix, false) = 1) {
+    Clipboard := clearHTML(Clipboard)
+    Clipboard := "<h1>" Clipboard "</h1>"
+} else {
+    Clipboard := "<h1>" Clipboard "</h1>"
 }
+Send, {Ctrl down}v{Ctrl up}
+
+Clipboard := clipTemp
 return
+
+
 
 !^2::
-Send, {end}
-ascinput("</h2>")
-Send, {home}
-ascinput("h2>")
-Send, {home}
-ascinput("<")
-Send, {end}
-Loop, 5 {
-    Send, {Left}
+clipTemp := Clipboard
+Clipboard := ""
+
+Send, {Ctrl down}lc{Ctrl up}
+titlePrefix := "<h"
+thisTitlePrefix := "<h2"
+if (InStr(Clipboard, thisTitlePrefix, false) = 1) {
+    Clipboard := clearHTML(Clipboard)
+} else if (InStr(Clipboard, titlePrefix, false) = 1) {
+    Clipboard := clearHTML(Clipboard)
+    Clipboard := "<h2>" Clipboard "</h2>"
+} else {
+    Clipboard := "<h2>" Clipboard "</h2>"
 }
+Send, {Ctrl down}v{Ctrl up}
+
+Clipboard := clipTemp
 return
+
+
 
 !^3::
-Send, {end}
-ascinput("</h3>")
-Send, {home}
-ascinput("h3>")
-Send, {home}
-ascinput("<")
-Send, {end}
-Loop, 5 {
-    Send, {Left}
+clipTemp := Clipboard
+Clipboard := ""
+
+Send, {Ctrl down}lc{Ctrl up}
+titlePrefix := "<h"
+thisTitlePrefix := "<h3"
+if (InStr(Clipboard, thisTitlePrefix, false) = 1) {
+    Clipboard := clearHTML(Clipboard)
+} else if (InStr(Clipboard, titlePrefix, false) = 1) {
+    Clipboard := clearHTML(Clipboard)
+    Clipboard := "<h3>" Clipboard "</h3>"
+} else {
+    Clipboard := "<h3>" Clipboard "</h3>"
 }
+Send, {Ctrl down}v{Ctrl up}
+
+Clipboard := clipTemp
 return
+
+
 
 !^4::
-Send, {end}
-ascinput("</h4>")
-Send, {home}
-ascinput("h4>")
-Send, {home}
-ascinput("<")
-Send, {end}
-Loop, 5 {
-    Send, {Left}
+clipTemp := Clipboard
+Clipboard := ""
+
+Send, {Ctrl down}lc{Ctrl up}
+titlePrefix := "<h"
+thisTitlePrefix := "<h4"
+if (InStr(Clipboard, thisTitlePrefix, false) = 1) {
+    Clipboard := clearHTML(Clipboard)
+} else if (InStr(Clipboard, titlePrefix, false) = 1) {
+    Clipboard := clearHTML(Clipboard)
+    Clipboard := "<h4>" Clipboard "</h4>"
+} else {
+    Clipboard := "<h4>" Clipboard "</h4>"
 }
+Send, {Ctrl down}v{Ctrl up}
+
+Clipboard := clipTemp
 return
+
+
 
 !^5::
-Send, {end}
-ascinput("</h5>")
-Send, {home}
-ascinput("h5>")
-Send, {home}
-ascinput("<")
-Send, {end}
-Loop, 5 {
-    Send, {Left}
+clipTemp := Clipboard
+Clipboard := ""
+
+Send, {Ctrl down}lc{Ctrl up}
+titlePrefix := "<h"
+thisTitlePrefix := "<h5"
+if (InStr(Clipboard, thisTitlePrefix, false) = 1) {
+    Clipboard := clearHTML(Clipboard)
+} else if (InStr(Clipboard, titlePrefix, false) = 1) {
+    Clipboard := clearHTML(Clipboard)
+    Clipboard := "<h5>" Clipboard "</h5>"
+} else {
+    Clipboard := "<h5>" Clipboard "</h5>"
 }
+Send, {Ctrl down}v{Ctrl up}
+
+Clipboard := clipTemp
 return
+
+
 
 !^6::
-Send, {end}
-ascinput("</h6>")
-Send, {home}
-ascinput("h6>")
-Send, {home}
-ascinput("<")
-Send, {end}
-Loop, 5 {
-    Send, {Left}
+clipTemp := Clipboard
+Clipboard := ""
+
+Send, {Ctrl down}lc{Ctrl up}
+titlePrefix := "<h"
+thisTitlePrefix := "<h6"
+if (InStr(Clipboard, thisTitlePrefix, false) = 1) {
+    Clipboard := clearHTML(Clipboard)
+} else if (InStr(Clipboard, titlePrefix, false) = 1) {
+    Clipboard := clearHTML(Clipboard)
+    Clipboard := "<h6>" Clipboard "</h6>"
+} else {
+    Clipboard := "<h6>" Clipboard "</h6>"
 }
+Send, {Ctrl down}v{Ctrl up}
+
+Clipboard := clipTemp
 return
 
+
+
 !^7::
-Send, {home}
-Loop, 4 {
-    Send, {Right}
+!^0::
+clipTemp := Clipboard
+Clipboard := ""
+
+Send, {Ctrl down}lc{Ctrl up}
+titlePrefix := "<h"
+if (InStr(Clipboard, titlePrefix, false) = 1) {
+    Clipboard := clearHTML(Clipboard)
+} else {
+    ; no need for HTML
 }
-Loop, 4 {
-    Send, {Backspace}
-}
-Send, {end}
-Loop, 5 {
-    Send, {Backspace}
-}
+Send, {Ctrl down}v{Ctrl up}
+
+Clipboard := clipTemp
 return
+
+
 
 ;-------------------------------------------------
 ;以下两个快捷键为权宜之计, 暂时已弃用.
@@ -618,7 +677,7 @@ if (InStr(Clipboard, colorPrefix, false) = 1) {
 } ; 若已为 HTML 代码, 则取消 HTML 格式
 
 textColor := ""
-InputBox, textColor, 设置颜色, 请输入颜色，可以用颜色的英文名或十六进制颜色码.`n 若不输入任何内容，则默认为黑色., SHOW, , , , , , , blue
+InputBox, textColor, 设置颜色, 请输入颜色，可以用颜色的英文名或十六进制颜色码.`n若不输入任何内容，则默认为黑色., SHOW, , , , , , , blue
 if (textColor = "" or textColor = " " or textColor = "  " or textColor = "``") {
     ; 若为空字符串, 则不作处理, 并且没有 {Left 7}
     Send, {Ctrl down}v{Ctrl up}
@@ -688,84 +747,6 @@ return
 
 +^k::
 Send, {Shift down}{Ctrl down}{Down}{Ctrl up}{Shift up}
-return
-
-;按键: Alt + Ctrl + 1~7
-;功能: 修改为 HTML 样式的小标题, 其中 7 为正文
-;注: 在 sublime 中为正常的输入顺序.
-;以下快捷键在 sublime 里用的不多, 删了也行.
-!^1::
-Send, {home}
-ascinput("<h1>")
-Send, {end}
-ascinput("</h1>")
-Loop, 5 {
-    Send, {Left}
-}
-return
-
-!^2::
-Send, {home}
-ascinput("<h2>")
-Send, {end}
-ascinput("</h2>")
-Loop, 5 {
-    Send, {Left}
-}
-return
-
-!^3::
-Send, {home}
-ascinput("<h3>")
-Send, {end}
-ascinput("</h3>")
-Loop, 5 {
-    Send, {Left}
-}
-return
-
-!^4::
-Send, {home}
-ascinput("<h4>")
-Send, {end}
-ascinput("</h4>")
-Loop, 5 {
-    Send, {Left}
-}
-return
-
-!^5::
-Send, {home}
-ascinput("<h5>")
-Send, {end}
-ascinput("</h5>")
-Loop, 5 {
-    Send, {Left}
-}
-return
-
-!^6::
-Send, {home}
-ascinput("<h6>")
-Send, {end}
-ascinput("</h6>")
-Loop, 5 {
-    Send, {Left}
-}
-return
-
-!^7::
-Send, {home}
-Loop, 4 {
-    Send, {Right}
-}
-Loop, 4 {
-    Send, {Backspace}
-}
-Send, {end}
-Loop, 5 {
-    Send, {Backspace}
-}
 return
 
 ;-------------------------------------------------

@@ -87,9 +87,9 @@ C:\ProgramData\Microsoft\Windows\Start Menu\Programs\StartUp
 
 10. 按键: Esc + LShift
 
-   功能: 最小化任意页面.
+    功能: 最小化任意页面.
 
-   注: 建议按下 Esc 后按 LShift, 不过先按 LShift 也是可以的. 在一些软件中, Esc 用于关闭应用内小窗, 所以这里加上了 LShift.
+    注: 建议按下 Esc 后按 LShift, 不过先按 LShift 也是可以的. 在一些软件中, Esc 用于关闭应用内小窗, 所以这里加上了 LShift.
 
 
 
@@ -107,11 +107,25 @@ C:\ProgramData\Microsoft\Windows\Start Menu\Programs\StartUp
 
    别问, 问就是我喜欢星星和月亮.
 
-3. 按键: Ctrl + Alt + 1~7
+3. 按键: Alt + Ctrl + 1~7 / 0
 
-   功能: 修改为 HTML 样式的小标题, 其中 7 为正文
+   功能: 修改为 HTML 样式的小标题, 其中 7 或 0 为正文
 
-   注: 由于 HTML 输入环境的影响, 只能用了一个奇怪的顺序了.
+   功能细节:
+
+   1. Alt + Ctrl + 1~6
+      1. 如果当前不是 HTML 格式, 则会修改为 HTML 格式.
+      2. 如果当前是 HTML 样式的对应标题, 则会修改为正文.
+      3. 如果当前是 HTML 样式的其它标题, 则会修改为对应小标题.
+   2. Alt + Ctrl + 7 / 0
+      1. 如果当前是 HTML 样式的小标题, 则会取消 HTML 样式.
+      2. 如果不是 HTML 样式, 则不作处理.
+
+   备注:
+
+   1. 小标题内容里不能含有 '<' 和 '>', 否则会影响对内容的判断, 导致信息丢失.
+   2. 小标题里不建议含有行内公式, 因为转成 PDF 后, 目录里的行内公式会以源代码显示.
+   3. 实现方式是复制整行文字, 然后处理字符串并粘贴回去. 这样可以提高程序效率.
 
 4. 按键: Alt + M 和 Alt + Shift + M
 
@@ -233,11 +247,11 @@ C:\ProgramData\Microsoft\Windows\Start Menu\Programs\StartUp
    1. 等价于 Ctrl + Shift + 上/下. 在 sublime text 里原为 indent 和 reindent 的效果, 不过它们可以用 Tab 和 Shift + Tab 替代.
    2. 为方便起见, 这里的上下左右不用再按 Alt.
 
-3. 按键: Alt + Ctrl + 1~7
+3. ~~按键: Alt + Ctrl + 1~7~~
 
-   功能: 修改为 HTML 样式的小标题, 其中 7 为正文
+   ~~功能: 修改为 HTML 样式的小标题, 其中 7 为正文~~
 
-   注: 在 sublime 中为正常的输入顺序.
+   ~~注: 在 sublime 中为正常的输入顺序.~~
 
 4. 按键: RAlt + ;/,
 
