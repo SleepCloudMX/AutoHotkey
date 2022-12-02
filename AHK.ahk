@@ -117,21 +117,29 @@ clearHotStringCMD() {
 
 ;-------------------------------------------------
 ;取消字符串的 HTML 格式
+; clearHTML(str) {
+;     num := 0
+;     Loop, parse, str, >     ; 此时大括号不能放在这一行
+;     {
+;         if (num = 1) {
+;             str := A_LoopField
+;             break
+;         }
+;         num := num + 1
+;     }
+;     Loop, parse, str, <
+;     {
+;         str := A_LoopField
+;         return str
+;     }
+; }
+
 clearHTML(str) {
-    num := 0
-    Loop, parse, str, >     ; 此时大括号不能放在这一行
-    {
-        if (num = 1) {
-            str := A_LoopField
-            break
-        }
-        num := num + 1
-    }
-    Loop, parse, str, <
-    {
-        str := A_LoopField
-        return str
-    }
+    ; InStr(Haystack, Needle [, CaseSensitive?, StartingPos])
+    sttPos := InStr(str, ">", false, 1) + 1     ; 从左开始
+    endPos := InStr(str, "</", false, -1)       ; 从右开始
+    len := endPos - sttPos                      ; [endPos, sttPos)
+    return SubStr(str, sttPos, len)
 }
 
 
@@ -464,6 +472,52 @@ if (InStr(Clipboard, titlePrefix, false) = 1) {
 } else {
     ; no need for HTML
 }
+Send, {Ctrl down}v{Ctrl up}
+
+Clipboard := clipTemp
+return
+
+
+
+;-------------------------------------------------
+;按键: Alt + Ctrl + =/-
+;功能: 修改 HTML 样式的小标题至上一级或下一级
+
+!^=::
+clipTemp := Clipboard
+Clipboard := ""
+
+Send, {Ctrl down}lc{Ctrl up}
+titlePrefix := "<h"
+if (InStr(Clipboard, titlePrefix, false) = 1) {
+    titleRank := Asc(SubStr(Clipboard, 3, 1)) - 48 - 1  ; 转为整数并减一
+    if (1 <= titleRank and titleRank < 6) {
+        Clipboard := clearHTML(Clipboard)
+        Clipboard := "<h" titleRank ">" Clipboard "</h" titleRank ">"
+    } ; 正常情况下为 0-5, 其中 0 不作处理, 即保持为 1
+} else {
+    Clipboard := "<h6>" Clipboard "</h6>"
+} ; 如果为正文, 则设置为六级标题
+Send, {Ctrl down}v{Ctrl up}
+
+Clipboard := clipTemp
+return
+
+
+
+!^-::
+clipTemp := Clipboard
+Clipboard := ""
+
+Send, {Ctrl down}lc{Ctrl up}
+titlePrefix := "<h"
+if (InStr(Clipboard, titlePrefix, false) = 1) {
+    titleRank := Asc(SubStr(Clipboard, 3, 1)) - 48 + 1  ; 转为整数并减一
+    Clipboard := clearHTML(Clipboard)   ; 注意这行代码与前一个快捷键不一样, 因为想要实现的功能的逻辑不同
+    if (1 < titleRank and titleRank <= 6) {
+        Clipboard := "<h" titleRank ">" Clipboard "</h" titleRank ">"
+    } ; 正常情况下为 1-7, 其中 7 直接取消 HTML 格式即可
+} ; 否则已处于正文格式, 无需处理
 Send, {Ctrl down}v{Ctrl up}
 
 Clipboard := clipTemp
