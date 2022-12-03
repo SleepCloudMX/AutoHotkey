@@ -161,7 +161,7 @@ C:\ProgramData\Microsoft\Windows\Start Menu\Programs\StartUp
       2. 如果当前是 HTML 样式的六级标题, 则修改为文本格式.
       3. 如果当前是 HTML 样式的 $n$ 级标题 ($n \ne 6$), 则修改为 $(n+1)$ 级标题.
 
-5. 按键: RAlt + M
+5. 按键: Alt + M
 
    功能: 设置行内公式.
 

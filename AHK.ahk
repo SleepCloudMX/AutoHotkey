@@ -537,11 +537,11 @@ return
 ;return
 
 ;-------------------------------------------------
-;按键: RAlt + M
+;按键: Alt + M
 ;功能: 分别为行内公式和取消行内公式
 ;注: 需要在设置里启用行内公式 (LaTeX 语法)
 
-~RAlt & m::
+!m::
 clipTemp := Clipboard
 Clipboard := ""
 
