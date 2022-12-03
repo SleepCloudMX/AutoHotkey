@@ -137,7 +137,7 @@ clearHotStringCMD() {
 clearHTML(str) {
     ; InStr(Haystack, Needle [, CaseSensitive?, StartingPos])
     sttPos := InStr(str, ">", false, 1) + 1     ; 从左开始
-    endPos := InStr(str, "</", false, -1)       ; 从右开始
+    endPos := InStr(str, "</", false, -1)       ; 从右开始, 这里的 -1 表示从倒数第二位, 如果是 0 则为倒数第一位
     len := endPos - sttPos                      ; [endPos, sttPos)
     return SubStr(str, sttPos, len)
 }
@@ -537,27 +537,148 @@ return
 ;return
 
 ;-------------------------------------------------
-;按键: Alt + M 和 Alt + Shift + M
+;按键: RAlt + M
 ;功能: 分别为行内公式和取消行内公式
 ;注: 需要在设置里启用行内公式 (LaTeX 语法)
 
-!m::
-ascinput("$  $")
-Send, {Left}{Left}
+~RAlt & m::
+clipTemp := Clipboard
+Clipboard := ""
+
+; 获取该行前后信息
+Send, {Shift down}{Home}{Shift up}{Ctrl down}c{Ctrl up}
+lineBefore := Clipboard
+Clipboard := ""     ; 如果电脑高延迟, 则下面的 Ctrl + C 无法成功复制, 所以加上这行代码
+
+Send, {Shift down}{End}{Shift up}{Ctrl down}c{Ctrl up}
+lineAfter := CLipboard
+Clipboard := ""
+
+; 处理左侧字符串
+isEscaped := false  ; 是否转义
+leftCharNum := 0    ; 左边的字符数量
+leftNum := 0        ; 左边的美元符号数量
+leftPos := 0        ; 最右侧美元号的位置
+Loop, Parse, lineBefore
+{
+    leftCharNum := leftCharNum + 1
+    if (A_LoopField = "$" and isEscaped = false) {
+        leftNum := leftNum + 1
+        leftPos := leftCharNum
+    } else if (A_LoopField = "\" and isEscaped = false) {
+        isEscaped := true   ; 注意反斜杠可以转义反斜杠
+    } else if (isEscaped = true) {
+        isEscaped := false
+    } ; 注意 AHK 使用 ` 而 typora 使用 \ 转义
+}
+
+; 处理右侧字符串
+isEscaped := false  ; 是否转义
+rightCharNum := 0   ; 右边的字符数量
+rightNum := 0       ; 右边的美元符号数量
+rightPos := 0       ; 最左侧美元号的位置
+Loop, Parse, lineAfter
+{
+    rightCharNum := rightCharNum + 1
+    if (A_LoopField = "$" and isEscaped = false) {
+        rightNum := rightNum + 1
+        if (rightPos = 0) {
+            rightPos := rightCharNum
+        }
+    } else if (A_LoopField = "\" and isEscaped = false) {
+        isEscaped := true   ; 注意反斜杠可以转义反斜杠
+    } else if (isEscaped = true) {
+        isEscaped := false
+    } ; 注意 AHK 使用 ` 而 typora 使用 \ 转义
+}
+
+if (Mod(leftNum, 2) = 1 and Mod(rightNum, 2) = 1) {
+    ; delelte $  $
+    ; 处理输出字符串
+    lenBefore := leftPos - 1
+    lineBefore := SubStr(lineBefore, 1, lenBefore)
+    lastChar := SubStr(lineBefore, StrLen(lineBefore), 1)
+    if (lastChar = " ") {
+        lineBefore := SubStr(lineBefore, 1, lenBefore - 1)
+    }
+
+    rightStart := rightPos + 1
+    lenAfter := rightCharNum - rightPos
+    lineAfter := SubStr(lineAfter, rightStart, lenAfter)
+    nextChar := SubStr(lineAfter, 1, 1)
+    if (nextChar = " ") {
+        lineAfter := SubStr(lineAfter, 2, lenAfter - 1)
+    }
+
+    ; 此时前后均必有字符, 放心删就是了
+    Send, {Backspace}{Shift down}{Home}{Shift up}{Backspace}
+    Clipboard := lineAfter
+    Send, {Ctrl down}v{Ctrl up}{Home}
+    Clipboard := lineBefore
+    Send, {Ctrl down}v{Ctrl up}
+} else {
+    ; add $  $
+    ; 处理输出字符串
+    inlineMathStr := "$  $"
+    leftMoves := 2
+
+    lastChar := SubStr(lineBefore, StrLen(lineBefore), 1)
+    if (lineBefore != "" and lastChar != " ") {
+        inlineMathStr := " " inlineMathStr
+    }
+
+    nextChar := SubStr(lineAfter, 1, 1)
+    if (lineAfter != "" and nextChar != " " and nextChar != "。") {
+        if (and nextChar != "," and nextChar != "." and nextChar != "，") {
+            inlineMathStr := inlineMathStr " "
+            leftMoves := leftMoves + 1
+            Send, {Left}    ; 如果右边有字符, 则取消选中, 防止误删
+        }
+    }
+
+    Clipboard := inlineMathStr
+    Send, {Ctrl down}v{Ctrl up}{Left %leftMoves%}
+}
+
+Clipboard := clipTemp
 return
 
-!+m::
-Send, {Right}{Right}
-loop, 4 {
-    Send, {Backspace}
-}
-return
+
+
+; 另一种有不足但更加快速的方法:
+; ~Space & m::
+
+; ~RAlt & m::
+; clipTemp := Clipboard
+; Clipboard := ""
+
+; Send, {Shift down}{End}{Shift up}{Ctrl down}c{Ctrl up}
+; if (Clipboard == "") {
+;     Clipboard := " $  $"
+;     Send, {Ctrl down}v{Ctrl up}{Left 2}
+; } else {
+;     len := StrLen(Clipboard)
+;     mathPos := InStr(Clipboard, "$", false, 0)  ; 注意 0 是从最后一个字符开始向左遍历
+;     if ( (1 <= mathPos) and (mathPos <= 5) and (len - mathPos <= 1) ) {
+;         num := 6 - mathPos
+;         Send, {Backspace %num%}
+;     } else {
+;         Clipboard := " $  $ "   ; 注意这里多了一个空格
+;         Send, {Left}{Ctrl down}v{Ctrl up}{Left 3}
+;     } ; 注意这里先 Send 了一个 {Left}
+; }
+
+; Clipboard := clipTemp
+; return
+
+
 
 ;-------------------------------------------------
 ;按键: Alt + Ctrl + M
 ;功能: 刷新数学公式
 ;注: 因为这个功能用的频率不太高, 就用了三个键.
 ;自己写的快捷键大部分含 Alt, 所以就这样设置了.
+;目前已使用 typora 自带的方式修改快捷键
 
 ; !^m::
 ; Send, {Alt down}e{Alt up}
