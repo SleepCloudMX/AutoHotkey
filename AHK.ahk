@@ -632,8 +632,11 @@ if (Mod(leftNum, 2) = 1 and Mod(rightNum, 2) = 1) {
         if (and nextChar != "," and nextChar != "." and nextChar != "，") {
             inlineMathStr := inlineMathStr " "
             leftMoves := leftMoves + 1
-            Send, {Left}    ; 如果右边有字符, 则取消选中, 防止误删
         }
+    }
+
+    if (lineAfter != "") {
+        Send, {Left}    ; 如果右边有字符, 则取消选中, 防止误删
     }
 
     Clipboard := inlineMathStr
