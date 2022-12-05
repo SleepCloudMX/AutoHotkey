@@ -325,10 +325,10 @@ ascinput(":crescent_moon:")
 return
 
 ;-------------------------------------------------
-;按键: Ctrl + Alt + 1~7
+;按键: Alt + 1~7
 ;功能: 修改为 HTML 样式的小标题, 其中 7 为正文
 
-!^1::
+!1::
 clipTemp := Clipboard
 Clipboard := ""     ; 这是好习惯 (不然电脑卡顿会很难受...)
 
@@ -350,7 +350,7 @@ return
 
 
 
-!^2::
+!2::
 clipTemp := Clipboard
 Clipboard := ""
 
@@ -372,7 +372,7 @@ return
 
 
 
-!^3::
+!3::
 clipTemp := Clipboard
 Clipboard := ""
 
@@ -394,7 +394,7 @@ return
 
 
 
-!^4::
+!4::
 clipTemp := Clipboard
 Clipboard := ""
 
@@ -416,7 +416,7 @@ return
 
 
 
-!^5::
+!5::
 clipTemp := Clipboard
 Clipboard := ""
 
@@ -438,7 +438,7 @@ return
 
 
 
-!^6::
+!6::
 clipTemp := Clipboard
 Clipboard := ""
 
@@ -460,8 +460,8 @@ return
 
 
 
-!^7::
-!^0::
+!7::
+!0::
 clipTemp := Clipboard
 Clipboard := ""
 
@@ -480,10 +480,10 @@ return
 
 
 ;-------------------------------------------------
-;按键: Alt + Ctrl + =/-
+;按键: Alt + =/-
 ;功能: 修改 HTML 样式的小标题至上一级或下一级
 
-!^=::
+!=::
 clipTemp := Clipboard
 Clipboard := ""
 
@@ -505,7 +505,7 @@ return
 
 
 
-!^-::
+!-::
 clipTemp := Clipboard
 Clipboard := ""
 
@@ -868,7 +868,7 @@ Clipboard := temp
 return
 
 ;-------------------------------------------------
-;按键: CapsLock + C
+;按键: CapsLock + V
 ;功能: 恢复文字默认颜色
 ;具体说明见 README
 
@@ -885,6 +885,51 @@ Send, {Ctrl down}v{Ctrl up}
 
 Clipboard := temp
 return
+
+;-------------------------------------------------
+; 按键: Alt + %
+; 功能: 注释
+
+!t::
+clipTemp := Clipboard
+Clipboard := ""
+
+Send, {Ctrl down}c{Ctrl up}
+if (Clipboard = "") {
+    Send, {Shift down}{Home}{Shift up}{Ctrl down}c{Ctrl up}
+    if (Clipboard != "" and SubStr(Clipboard, 1, 1) = "`%") {
+        Clipboard := SubStr(Clipboard, 2, StrLen(Clipboard) - 1)
+        if (SubStr(Clipboard, 1, 1) = " ") {
+            Clipboard := SubStr(Clipboard, 2, StrLen(Clipboard) - 1)
+        } ; 也可以先判断是否为 " `%"
+    } else {
+        Clipboard := "`% " Clipboard
+    }
+} else {
+    outputStr := ""
+    Loop, Parse, Clipboard, "`n"
+    {
+        temp := ""
+        if (SubStr(A_LoopField, 1, 1) = "`%") {
+            temp := SubStr(A_LoopField, 2, StrLen(A_LoopField) - 1)
+            if (SubStr(temp, 1, 1) = " ") {
+                temp := SubStr(temp, 2, StrLen(temp) - 1)
+            }
+        } else {
+            temp := "`% " A_LoopField "`n"
+        }
+        outputStr := outputStr temp
+    }
+    if (SubStr(outputStr, StrLen(outputStr), 1) = "`n") {
+        outputStr := SubStr(outputStr, 1, StrLen(outputStr) - 1)
+    }
+    Clipboard := outputStr
+}
+Send, {Ctrl down}v{Ctrl up}{End}    ; 一定要加 End, typora 有点 bug.
+
+Clipboard := clipTemp
+return
+
 
 
 
