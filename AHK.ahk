@@ -834,6 +834,7 @@ htmlstr =
     </script>
 </div>
 )
+clearHotStringCMD()
 Clipboard = %htmlstr%
 Send, {Ctrl down}v{Ctrl up}{Down}
 Clipboard = %webstr%    ; 有借有还, 是好文明
