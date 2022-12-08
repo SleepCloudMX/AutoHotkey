@@ -645,6 +645,7 @@ if (Mod(leftNum, 2) = 1 and Mod(rightNum, 2) = 1) {
         Send, {Delete}
     }
 
+    SwitchIME(0x04090409)   ; 切换至英文输入法, 方便输入公式
     Clipboard := inlineMathStr
     Send, {Ctrl down}v{Ctrl up}{Left %leftMoves%}
 }
