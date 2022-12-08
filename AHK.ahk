@@ -332,7 +332,7 @@ return
 clipTemp := Clipboard
 Clipboard := ""     ; 这是好习惯 (不然电脑卡顿会很难受...)
 
-Send, {Ctrl down}lc{Ctrl up}
+Send, {Home}{Ctrl down}lc{Ctrl up}  ; 这里的 {home} 是有必要的, 如果用户在使用快捷键前已选中整行, 且从右向左勾选, 则该快捷键无法正常使用.
 titlePrefix := "<h"    ; 注意到用户可能会用 <h1> 或 <h2 align="center">
 thisTitlePrefix := "<h1"
 if (InStr(Clipboard, thisTitlePrefix, false) = 1) {
@@ -354,7 +354,7 @@ return
 clipTemp := Clipboard
 Clipboard := ""
 
-Send, {Ctrl down}lc{Ctrl up}
+Send, {Home}{Ctrl down}lc{Ctrl up}
 titlePrefix := "<h"
 thisTitlePrefix := "<h2"
 if (InStr(Clipboard, thisTitlePrefix, false) = 1) {
@@ -376,7 +376,7 @@ return
 clipTemp := Clipboard
 Clipboard := ""
 
-Send, {Ctrl down}lc{Ctrl up}
+Send, {Home}{Ctrl down}lc{Ctrl up}
 titlePrefix := "<h"
 thisTitlePrefix := "<h3"
 if (InStr(Clipboard, thisTitlePrefix, false) = 1) {
@@ -398,7 +398,7 @@ return
 clipTemp := Clipboard
 Clipboard := ""
 
-Send, {Ctrl down}lc{Ctrl up}
+Send, {Home}{Ctrl down}lc{Ctrl up}
 titlePrefix := "<h"
 thisTitlePrefix := "<h4"
 if (InStr(Clipboard, thisTitlePrefix, false) = 1) {
@@ -420,7 +420,7 @@ return
 clipTemp := Clipboard
 Clipboard := ""
 
-Send, {Ctrl down}lc{Ctrl up}
+Send, {Home}{Ctrl down}lc{Ctrl up}
 titlePrefix := "<h"
 thisTitlePrefix := "<h5"
 if (InStr(Clipboard, thisTitlePrefix, false) = 1) {
@@ -442,7 +442,7 @@ return
 clipTemp := Clipboard
 Clipboard := ""
 
-Send, {Ctrl down}lc{Ctrl up}
+Send, {Home}{Ctrl down}lc{Ctrl up}
 titlePrefix := "<h"
 thisTitlePrefix := "<h6"
 if (InStr(Clipboard, thisTitlePrefix, false) = 1) {
@@ -465,7 +465,7 @@ return
 clipTemp := Clipboard
 Clipboard := ""
 
-Send, {Ctrl down}lc{Ctrl up}
+Send, {Home}{Ctrl down}lc{Ctrl up}
 titlePrefix := "<h"
 if (InStr(Clipboard, titlePrefix, false) = 1) {
     Clipboard := clearHTML(Clipboard)
@@ -487,7 +487,7 @@ return
 clipTemp := Clipboard
 Clipboard := ""
 
-Send, {Ctrl down}lc{Ctrl up}
+Send, {Home}{Ctrl down}lc{Ctrl up}
 titlePrefix := "<h"
 if (InStr(Clipboard, titlePrefix, false) = 1) {
     titleRank := Asc(SubStr(Clipboard, 3, 1)) - 48 - 1  ; 转为整数并减一
@@ -509,7 +509,7 @@ return
 clipTemp := Clipboard
 Clipboard := ""
 
-Send, {Ctrl down}lc{Ctrl up}
+Send, {Home}{Ctrl down}lc{Ctrl up}
 titlePrefix := "<h"
 if (InStr(Clipboard, titlePrefix, false) = 1) {
     titleRank := Asc(SubStr(Clipboard, 3, 1)) - 48 + 1  ; 转为整数并减一
