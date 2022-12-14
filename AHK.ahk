@@ -862,8 +862,13 @@ if (InStr(Clipboard, colorPrefix, false) = 1) {
     Clipboard := clearHTML(Clipboard)
 } ; 若已为 HTML 代码, 则取消 HTML 格式
 
+; 恢复剪切板, 因为用户输入颜色时可能直接复制粘贴
+temp2 := Clipboard
+Clipboard := temp
 textColor := ""
 InputBox, textColor, 设置颜色, 请输入颜色，可以用颜色的英文名或十六进制颜色码.`n若不输入任何内容，则默认为黑色., SHOW, , , , , , , blue
+Clipboard := temp2
+
 if (textColor = "" or textColor = " " or textColor = "  " or textColor = "``") {
     ; 若为空字符串, 则不作处理, 并且没有 {Left 7}
     Send, {Ctrl down}v{Ctrl up}
