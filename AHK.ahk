@@ -79,7 +79,7 @@ ascaltinput(string) {
 ; 允许使用字母、数字、非 ASCII 字符和 # $ @ _
 ; 可以以数字开头, 不区分大小写, 不超过 253 个字符
 isValidVarName(str, maxLen := 253) {
-    if ((str == "") || (strlen(str) > maxLen)) {
+    if ((str == "") || (StrLen(str) > maxLen)) {
         return false
     }
     Loop, Parse, str
@@ -544,6 +544,38 @@ return
 !m::
 clipTemp := Clipboard
 Clipboard := ""
+
+; 如果有选中文字, 则直接处理选中内容
+Send, {Ctrl down}c{Ctrl up}
+if (Clipboard != "") {
+    isMathMode := false
+    if (SubStr(Clipboard, 1, 2) = "$ ") {
+        Clipboard := SubStr(Clipboard, 3, StrLen(Clipboard) - 2)
+    } else if (SubStr(Clipboard, 1, 1) = "$") {
+        Clipboard := SubStr(Clipboard, 2, StrLen(Clipboard) - 1)
+    } else {
+        Clipboard := "$ " Clipboard
+        isMathMode := true
+    } ; 处理首位
+
+    if (isMathMode = false) {
+        if (SubStr(Clipboard, StrLen(Clipboard) - 1, 2) = " $") {
+            Clipboard := SubStr(Clipboard, 1, StrLen(Clipboard) - 2)
+        } else if (SubStr(Clipboard, StrLen(Clipboard), 1) = "$") {
+            Clipboard := SubStr(Clipboard, 1, StrLen(Clipboard) - 1)
+        } ; 其它情况不作处理
+    } else {
+        if (SubStr(Clipboard, StrLen(Clipboard), 1) != "$") {
+            Clipboard := Clipboard " $"
+        } else if (SubStr(Clipboard, StrLen(Clipboard) - 1, 1) != " ") {
+            Clipboard := SubStr(Clipboard, 1, StrLen(Clipboard) - 1)
+            Clipboard := Clipboard " $"
+        } ; 是数学模式
+    } ; 处理末位, 模式依首位而定
+
+    Send, {Ctrl down}v{Ctrl up}
+    return
+}
 
 ; 获取该行前后信息
 Send, {Shift down}{Home}{Shift up}{Ctrl down}c{Ctrl up}
