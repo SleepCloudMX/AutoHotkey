@@ -91,6 +91,12 @@ C:\ProgramData\Microsoft\Windows\Start Menu\Programs\StartUp
 
     注: 建议按下 Esc 后按 LShift, 不过先按 LShift 也是可以的. 在一些软件中, Esc 用于关闭应用内小窗, 所以这里加上了 LShift.
 
+11. 按键: CapsLock + T
+
+    功能: 打开我的 To Do List.
+
+    注: 我的 To Do List 既是待办事项, 也是日记, 每天经常会用到, 所以就写了这个快捷键. 日记位于 `E:/Notes/To Do List`, 命名格式是 `YYYY.MM.md`, 如 `2022.12.md`.
+
 
 
 ### 二、Typora 快捷键
