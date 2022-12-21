@@ -294,9 +294,13 @@ Send, {Shift up}{Alt down}{Space}n{Alt up}
 return
 
 ;-------------------------------------------------
+;按键: CapsLock + D
+;功能: 打开我的 To Do List & Diary
+~CapsLock & D::run E:\Notes\To Do List\%A_YYYY%.%A_MM%.md
+
 ;按键: CapsLock + T
-;功能: 打开我的 To Do List
-~CapsLock & T::run E:\Notes\To Do List\%A_YYYY%.%A_MM%.md
+;功能: 打开 Notepad (text)
+~CapsLock & T::run notepad
 
 
 
