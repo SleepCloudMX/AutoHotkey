@@ -304,9 +304,11 @@ C:\ProgramData\Microsoft\Windows\Start Menu\Programs\StartUp
 
 ```json
 "keyBinding": {
-    "Always on Top": "Alt + Ctrl + T",             // 保持顶端 (默认)
-    "Refresh All Math Expressions": "Ctrl + M",    // 刷新数学公式
-    "Toggle Task Status": "Alt + C",               // 切换任务状态
+    "Always on Top": "Alt + Ctrl + T", // 保持顶端 (默认)
+    "Refresh All Math Expressions": "Ctrl + M", // 刷新数学公式
+    "Toggle Task Status": "Alt + C", // 切换任务状态
+    "Open Link": "Alt + O", // 打开链接
+    "Reload All Images": "Alt + P", // 刷新所有图片
 }
 ```
 
