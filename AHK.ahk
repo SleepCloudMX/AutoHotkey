@@ -303,6 +303,45 @@ return
 ~CapsLock & T::run notepad
 
 
+;-------------------------------------------------
+;按键: CapsLock + S
+;功能: 打开网页进行搜索
+
+~CapsLock & s::
+clipTemp := Clipboard
+Clipboard := ""
+Send, {Ctrl down}c{Ctrl up}
+if (Clipboard = "") {
+    Clipboard := clipTemp
+}
+
+outputDir := "D:\AppData\AutoHotkey\Output\"
+href := "https://cn.bing.com/search?q=" Clipboard
+html =
+(
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>必应</title>
+</head>
+<body>
+    <Script>
+        window.location.href = "%href%"
+    </Script>
+</body>
+</html>
+)
+
+FileDelete, %outputDir%temp.html
+FileAppend, %html%, %outputDir%temp.html
+Run, %outputDir%temp.html
+
+Clipboard := clipTemp
+return
+
+
 
 ;----------------typora 专用快捷键-----------------
 ;以下按键只在 typora 中生效
@@ -800,9 +839,7 @@ htmlstr =
     <button id="btn-%webpart%">
         点击查看 Geogebra 图像
     </button>
-    &emsp;或直接打开<a href="%webstr%">
-        网页链接
-    </a>
+    &emsp;或直接打开<a href="%webstr%">网页链接</a>
     <iframe src="" width="800" height="0" allowfullscreen style="border: 1px solid #e4e4e4;border-radius: 4px;" frameborder="0" id="ifm-%webpart%"></iframe>
     <script>
         var src_%webpart% = "%webstr%";
@@ -858,9 +895,7 @@ htmlstr =
     <button id="btn-%webpart%">
         点击查看 Geogebra 图像
     </button>
-    &emsp;或直接打开<a href="%webstr%">
-        网页链接
-    </a>
+    &emsp;或直接打开<a href="%webstr%">网页链接</a>
     <iframe src="" width="800" height="0" allowfullscreen style="border: 1px solid #e4e4e4;border-radius: 4px;" frameborder="0" id="ifm-%webpart%"></iframe>
     <script>
         var src_%webpart% = "%webstr%";
