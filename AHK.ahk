@@ -314,9 +314,10 @@ Send, {Ctrl down}c{Ctrl up}
 if (Clipboard = "") {
     Clipboard := clipTemp
 } ; 如果无选中内容, 则搜索复制内容
-if (Clipboard = "") {
-    return
-} ; 如果也没有复制内容, 则不搜索
+; 注意在 sublime 中不选中内容按复制, 会复制整行 (包括回车). 当整行无内容时, 便只剩下 "`r`n"
+if (Clipboard = " " or Clipboard = "`n" or Clipboard = "`r`n") {
+    Clipboard := ""
+} ; 如果也没有复制内容, 则打开搜索引擎
 
 outputDir := "D:\AppData\AutoHotkey\Output\"
 href := "https://cn.bing.com/search?q=" Clipboard

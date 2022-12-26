@@ -107,7 +107,7 @@ C:\ProgramData\Microsoft\Windows\Start Menu\Programs\StartUp
 
     1. 如果有选中内容, 则搜索选中内容.
     2. 如果无选中内容, 则搜索复制内容.
-    3. 如果也没有复制内容, 则不去搜索.
+    3. 如果也没有复制, 则打开搜索引擎.
     
     备注:
     
@@ -214,7 +214,7 @@ C:\ProgramData\Microsoft\Windows\Start Menu\Programs\StartUp
 
    功能: 替换为 `<img src='image\.png' width=450>` 并将光标移至 .png 前
 
-   注: ~~需要等待约半秒, 期间请勿输入其它字符~~. 已解决延迟的问题, 但如果电脑本身运行慢, 则会替换为原剪切板里的内容.
+   注: 已解决延迟的问题, 但如果电脑本身运行慢, 则会替换为原剪切板里的内容.
 
 7. 按键: "\att" + Enter / Tab / Space
 
@@ -226,7 +226,7 @@ C:\ProgramData\Microsoft\Windows\Start Menu\Programs\StartUp
 
    并将光标移至 `</span>` 前
 
-   注: ~~需要等待约半秒, 期间请勿输入其它字符~~. 已解决延迟的问题, 但如果电脑本身运行慢, 则会替换为原剪切板里的内容.
+   注: 已解决延迟的问题, 但如果电脑本身运行慢, 则会替换为原剪切板里的内容.
 
 8. 按键: "\ggb" + Enter / Tab / Space
 
@@ -343,12 +343,6 @@ C:\ProgramData\Microsoft\Windows\Start Menu\Programs\StartUp
 
    1. 等价于 Ctrl + Shift + 上/下. 在 sublime text 里原为 indent 和 reindent 的效果, 不过它们可以用 Tab 和 Shift + Tab 替代.
    2. 为方便起见, 这里的上下左右不用再按 Alt.
-
-3. ~~按键: Alt + Ctrl + 1~7~~
-
-   ~~功能: 修改为 HTML 样式的小标题, 其中 7 为正文~~
-
-   ~~注: 在 sublime 中为正常的输入顺序.~~
 
 4. 按键: RAlt + ;/,
 
