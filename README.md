@@ -113,6 +113,7 @@ C:\ProgramData\Microsoft\Windows\Start Menu\Programs\StartUp
     
     1. 需要设置暂时输出文件的位置, 默认为 `outputDir := "D:\AppData\AutoHotkey\Output\"`.
     2. 默认使用必应进行搜索, 如有需要可以去源文件修改变量 `href`.
+    3. 会自动将所有回车 (Unix: `\n`, Mac: `\r`, Windows: `\r\n`) 替换为空格.
 
 
 

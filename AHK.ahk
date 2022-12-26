@@ -314,12 +314,12 @@ Send, {Ctrl down}c{Ctrl up}
 if (Clipboard = "") {
     Clipboard := clipTemp
 } ; 如果无选中内容, 则搜索复制内容
-if (SubStr(Clipboard, StrLen(Clipboard) - 1, 2) = "`r`n") {
-    Clipboard := SubStr(Clipboard, 1, StrLen(Clipboard) - 2)
-} ; 注意在 sublime 中不选中内容按复制, 会复制整行 (包括回车).
-if (Clipboard = " " or Clipboard = "`n" or Clipboard = "`r`n") {
-    Clipboard := ""
-} ; 如果也没有复制内容, 则打开搜索引擎
+
+; 将所有回车替换成空格.
+; 注意在 sublime 中不选中内容按复制, 会复制整行 (包括回车).
+Clipboard := StrReplace(Clipboard, "`r`n", " ")
+Clipboard := StrReplace(Clipboard, "`n", " ")
+Clipboard := StrReplace(Clipboard, "`r", " ")
 
 outputDir := "D:\AppData\AutoHotkey\Output\"
 href := "https://cn.bing.com/search?q=" Clipboard
