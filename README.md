@@ -105,14 +105,14 @@ C:\ProgramData\Microsoft\Windows\Start Menu\Programs\StartUp
 
     功能: 搜索.
 
-    功能细节:
-
-    1. 搜索
-       1. 如果有选中内容, 则搜索选中内容.
-       2. 如果无选中内容, 则搜索复制内容.
-    2. 设置
-       1. 需要设置暂时输出文件的位置, 默认为 `outputDir := "D:\AppData\AutoHotkey\Output\"`.
-       2. 默认使用必应进行搜索, 如有需要可以去源文件修改变量 `href`.
+    1. 如果有选中内容, 则搜索选中内容.
+    2. 如果无选中内容, 则搜索复制内容.
+    3. 如果也没有复制内容, 则不去搜索.
+    
+    备注:
+    
+    1. 需要设置暂时输出文件的位置, 默认为 `outputDir := "D:\AppData\AutoHotkey\Output\"`.
+    2. 默认使用必应进行搜索, 如有需要可以去源文件修改变量 `href`.
 
 
 

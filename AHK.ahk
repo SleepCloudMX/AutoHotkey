@@ -313,7 +313,10 @@ Clipboard := ""
 Send, {Ctrl down}c{Ctrl up}
 if (Clipboard = "") {
     Clipboard := clipTemp
-}
+} ; 如果无选中内容, 则搜索复制内容
+if (Clipboard = "") {
+    return
+} ; 如果也没有复制内容, 则不搜索
 
 outputDir := "D:\AppData\AutoHotkey\Output\"
 href := "https://cn.bing.com/search?q=" Clipboard
