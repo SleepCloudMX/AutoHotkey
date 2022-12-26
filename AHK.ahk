@@ -314,7 +314,9 @@ Send, {Ctrl down}c{Ctrl up}
 if (Clipboard = "") {
     Clipboard := clipTemp
 } ; 如果无选中内容, 则搜索复制内容
-; 注意在 sublime 中不选中内容按复制, 会复制整行 (包括回车). 当整行无内容时, 便只剩下 "`r`n"
+if (SubStr(Clipboard, StrLen(Clipboard) - 1, 2) = "`r`n") {
+    Clipboard := SubStr(Clipboard, 1, StrLen(Clipboard) - 2)
+} ; 注意在 sublime 中不选中内容按复制, 会复制整行 (包括回车).
 if (Clipboard = " " or Clipboard = "`n" or Clipboard = "`r`n") {
     Clipboard := ""
 } ; 如果也没有复制内容, 则打开搜索引擎
