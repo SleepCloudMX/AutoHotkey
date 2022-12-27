@@ -1,4 +1,9 @@
-﻿;------------------全局变量与函数定义------------------
+﻿#NoEnv  ; Recommended for performance and compatibility with future AutoHotkey releases.
+; #Warn  ; Enable warnings to assist with detecting common errors.
+; SendMode Input  ; Recommended for new scripts due to its superior speed and reliability.
+SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
+
+;------------------全局变量与函数定义------------------
 ;切换输入法的函数
 ;切换为英文输入法: SwitchIME(0x04090409)
 ;切换为中文输入法: SwitchIME(00000804)
@@ -346,6 +351,13 @@ Run, %outputDir%temp.html
 
 Clipboard := clipTemp
 return
+
+
+
+;-------------------------------------------------
+;按键: RAlt + RCtrl + L
+;功能: 禁用键盘
+>!>^l::run disableKeyboard.ahk
 
 
 

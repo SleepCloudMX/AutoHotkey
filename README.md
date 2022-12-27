@@ -108,12 +108,18 @@ C:\ProgramData\Microsoft\Windows\Start Menu\Programs\StartUp
     1. 如果有选中内容, 则搜索选中内容.
     2. 如果无选中内容, 则搜索复制内容.
     3. 如果也没有复制, 则打开搜索引擎.
-    
+
     备注:
-    
+
     1. 需要设置暂时输出文件的位置, 默认为 `outputDir := "D:\AppData\AutoHotkey\Output\"`.
     2. 默认使用必应进行搜索, 如有需要可以去源文件修改变量 `href`.
     3. 会自动将所有回车 (Unix: `\n`, Mac: `\r`, Windows: `\r\n`) 替换为空格.
+
+14. 按键: RAlt + RCtrl + L
+
+    功能: 禁用键盘 (按 Esc 重新启用键盘)
+
+    注: 我经常把书或纸放在键盘上写字, 容易误触, 就写了这个快捷键. 禁用或启用键盘都会有消息框提醒.
 
 
 
