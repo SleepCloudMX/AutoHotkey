@@ -3,7 +3,7 @@
 SendMode Input  ; Recommended for new scripts due to its superior speed and reliability.
 SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 
-MsgBox, 已禁用键盘！`n按 {Esc} 可重新启用键盘。
+MsgBox, 已禁用键盘！`n按 Esc 可重新启用键盘。
 
 Tab::
 CapsLock::
@@ -159,6 +159,6 @@ _::
 return
 
 ~Esc::
-MsgBox, 已启用键盘！`n按 {RAlt} {+} {RCtrl} {+} L 可禁用键盘。
+MsgBox, 已启用键盘！`n按 RAlt + RCtrl + L 可禁用键盘。
 ExitApp
 return
