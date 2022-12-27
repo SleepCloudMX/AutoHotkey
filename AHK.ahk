@@ -326,7 +326,8 @@ Clipboard := StrReplace(Clipboard, "`r`n", " ")
 Clipboard := StrReplace(Clipboard, "`n", " ")
 Clipboard := StrReplace(Clipboard, "`r", " ")
 
-outputDir := "D:\AppData\AutoHotkey\Output\"
+; outputFile 是暂存 HTML 的文件路径.
+outputFile := "D:\AppData\AutoHotkey\Output\Search.html"
 href := "https://cn.bing.com/search?q=" Clipboard
 html =
 (
@@ -345,9 +346,9 @@ html =
 </html>
 )
 
-FileDelete, %outputDir%temp.html
-FileAppend, %html%, %outputDir%temp.html
-Run, %outputDir%temp.html
+FileDelete, %outputFile%
+FileAppend, %html%, %outputFile%
+Run, %outputFile%
 
 Clipboard := clipTemp
 return
