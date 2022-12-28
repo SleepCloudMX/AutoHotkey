@@ -4,6 +4,9 @@ SendMode Input  ; Recommended for new scripts due to its superior speed and reli
 SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 
 MsgBox, 已禁用键盘！`n按 Esc 可重新启用键盘。
+Send, {sc163}
+
+SC163::
 
 Tab::
 CapsLock::
@@ -83,6 +86,33 @@ F21::
 F22::
 F23::
 F24::
+
+Browser_Back::	;后退
+Browser_Forward::	;前进
+Browser_Refresh::	;刷新
+Browser_Stop::	;停止
+Browser_Search::	;搜索
+Browser_Favorites::	;收藏夹
+Browser_Home::	;主页
+Volume_Mute::	;静音
+Volume_Down::	;调低音量
+Volume_Up::	;增加音量
+Media_Next::	;下一首
+Media_Prev::	;上一首
+Media_Stop::	;停止
+Media_Play_Pause::	;播放/暂停
+Launch_Mail::	;打开默认的电子邮件程序
+Launch_Media::	;打开默认的媒体播放器
+Launch_App1::	;打开我的电脑
+Launch_App2::	;打开计算器
+
+AppsKey::
+CtrlBreak::
+Pause::
+Help::
+Sleep::
+
+SC03F::
 
 Numpad0::
 NumpadIns::
