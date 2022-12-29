@@ -358,7 +358,11 @@ return
 ;-------------------------------------------------
 ;按键: RAlt + RCtrl + L
 ;功能: 禁用键盘
->!>^l::run disableKeyboard.ahk
+>!>^l::run utility\disableKeyboard.ahk
+
+;按键: RAlt + RCtrl + M
+;功能: 禁用鼠标
+>!>^m::run utility\disableMouse.ahk
 
 
 
