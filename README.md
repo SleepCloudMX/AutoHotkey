@@ -379,3 +379,21 @@ C:\ProgramData\Microsoft\Windows\Start Menu\Programs\StartUp
    功能: 选中整行 (原功能为搜索行)
 
    注: 如果你也想写 Arduino 的快捷键, 注意编辑器输入页面的程序是 java\bin\javaw.exe, 而非 arduino.exe
+
+
+
+### 五、Edge 快捷键
+
+[Microsoft Edge 中自带的快捷键](https://support.microsoft.com/zh-cn/microsoft-edge/microsoft-edge-中的键盘快捷方式-50d3edab-30d9-c7e4-21ce-37fe2713cfad#:~:text=随时随地通过任何设备使用Microsoft 365 工作 Ctrl %2B Tab 切换到下一个标签页 Ctrl,放大 Ctrl %2B 减号(-) 缩小 還有 78 列).
+
+1. 按键: Alt + 0-9
+
+   功能: 同 Ctrl + 数字.
+
+   - Alt + 1-8 分别切换至对相应标签页.
+   - Alt + 9 切换至最后一个标签页.
+   - Alt + 0 为重置页面缩放级别.
+
+2. 按键: Alt + -/+
+
+   功能: 切换至上一标签页或下一标签页.

@@ -1123,7 +1123,7 @@ return
 
 
 
-;----------------arduino 专用快捷键-----------------
+;----------------Arduino 专用快捷键-----------------
 ;以下快捷键只在 arduino 中生效.
 ;请先下载 AutoHotkey 后, 修改下方的文件路径, 再运行本程序.
 ;注意 arduino 的编辑器程序不是 arduino.exe, 而是 java\bin\javaw.exe
@@ -1139,3 +1139,29 @@ return
 
 #IfWinActive ; arduino
 ;-------------------------------------------------
+
+
+
+;----------------Edge 专用快捷键-----------------
+;以下快捷键只在 Microsoft Edge 中生效.
+#IfWinActive ahk_exe C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe
+
+;按键: Alt + 数字
+;功能: 切换标签页, 功能同 Ctrl + 数字
+!1::Send, {Ctrl down}1{Ctrl up}
+!2::Send, {Ctrl down}2{Ctrl up}
+!3::Send, {Ctrl down}3{Ctrl up}
+!4::Send, {Ctrl down}4{Ctrl up}
+!5::Send, {Ctrl down}5{Ctrl up}
+!6::Send, {Ctrl down}6{Ctrl up}
+!7::Send, {Ctrl down}7{Ctrl up}
+!8::Send, {Ctrl down}8{Ctrl up}
+!9::Send, {Ctrl down}9{Ctrl up}
+!0::Send, {Ctrl down}0{Ctrl up}
+
+;按键: Alt + -/+
+;功能: 切换至上一标签页或下一标签页
+!=::Send, {Ctrl down}{Tab}{Ctrl up}
+!-::Send, {Ctrl down}{Shift down}{Tab}{Shift up}{Ctrl up}
+
+#IfWinActive ; Microsoft Edge
