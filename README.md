@@ -323,6 +323,12 @@ C:\ProgramData\Microsoft\Windows\Start Menu\Programs\StartUp
 
     2. 如果选中文字, 则对每一行文字进行上述处理.
 
+13. 按键: Ctrl + W
+
+    功能: 保存后关闭.
+
+    注: 虽然开了自动保存, 但刚打完字就关的话还是会显示烦人的弹窗问我要不要保存. 所以重写了这个快捷键.
+
 
 
 ### 二'、Typora 快捷键 \(软件内定义\)
