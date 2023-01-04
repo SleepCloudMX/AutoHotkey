@@ -301,11 +301,28 @@ return
 ;-------------------------------------------------
 ;按键: CapsLock + D
 ;功能: 打开我的 To Do List & Diary
-~CapsLock & D::run E:\Notes\To Do List\%A_YYYY%.%A_MM%.md
+~CapsLock & D::Run E:\Notes\To Do List\%A_YYYY%.%A_MM%.md
+; 以下代码时为了跳转至对应小标题, 但效果不是很好.
+; filePath := "E:\Notes\To Do List\" A_YYYY "." A_MM ".md"
+; Process, Exist, %filePath%
+; if (ErrorLevel = 0) {
+;     Run %filePath%
+;     Sleep, 1500
+;     Send, {Left}{Ctrl down}lc{Ctrl up}
+;     if (SubStr(Clipboard, 1, 10) != "[Today](# ") {
+;         Send, {Ctrl down}{Alt down};{Alt up}{Ctrl up}{Down}
+;     }
+;     Clipboard := "[Today](# " A_MM "." A_DD ")"
+;     Send, {Ctrl down}vo{Ctrl up}
+; } else {
+;     Run %filePath%
+; }
+; return
 
+;-------------------------------------------------
 ;按键: CapsLock + T
 ;功能: 打开 Notepad (text)
-~CapsLock & T::run notepad
+~CapsLock & T::Run notepad
 
 
 ;-------------------------------------------------
@@ -726,7 +743,7 @@ if (Mod(leftNum, 2) = 1 and Mod(rightNum, 2) = 1) {
     leftMoves := 2
 
     lastChar := SubStr(lineBefore, StrLen(lineBefore), 1)
-    if (lineBefore != "" and lastChar != " ") {
+    if (lineBefore != "" and lastChar != " " and lastChar != "`t") {
         inlineMathStr := " " inlineMathStr
     }
 
@@ -1048,6 +1065,22 @@ return
 ;按键: Ctrl + w
 ;功能: 保存后关闭
 ^w::Send, {Ctrl down}sw{Ctrl up}
+; temp := Clipboard
+; Clipboard := ""
+; Send, {Ctrl down}swc{Ctrl up}
+; if (SubStr(Clipboard, StrLen(Clipboard) - 2, 3) = ".md") {
+;     Send, {Esc}{Tab 2}{Enter}
+; }
+; Clipboard := temp
+; return
+
+;-------------------------------------------------
+;按键: $$
+;功能: 替换为 `$  $` 并左移两格.
+
+:*:$$::
+Send, $  ${Left 2}
+return
 
 
 

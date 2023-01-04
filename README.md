@@ -329,6 +329,15 @@ C:\ProgramData\Microsoft\Windows\Start Menu\Programs\StartUp
 
     注: 虽然开了自动保存, 但刚打完字就关的话还是会显示烦人的弹窗问我要不要保存. 所以重写了这个快捷键.
 
+14. 按键: $$
+
+    功能: 替换为 `$  $` 并左移两格 (不会修改输入法).
+
+    备注:
+    
+    - 行内公式的另一种快捷按键, 不能替代 Alt + M. Alt + M 可以自动控制空格, 并可以用于删除行内公式.
+    - 为避免冲突, 此时可将刷新公式改为 Alt + Ctrl + M, 行间公式改为 Ctrl + M.
+
 
 
 ### 二'、Typora 快捷键 \(软件内定义\)
@@ -338,10 +347,12 @@ C:\ProgramData\Microsoft\Windows\Start Menu\Programs\StartUp
 ```json
 "keyBinding": {
     "Always on Top": "Alt + Ctrl + T", // 保持顶端 (默认)
-    "Refresh All Math Expressions": "Ctrl + M", // 刷新数学公式
+    "Refresh All Math Expressions": "Alt + Ctrl + M", // 刷新数学公式
     "Toggle Task Status": "Alt + C", // 切换任务状态
-    "Open Link": "Alt + O", // 打开链接
+    "Open Link": "Alt + O", // 打开链接 (无链接时打开笔记文件夹)
     "Reload All Images": "Alt + P", // 刷新所有图片
+    "Copy Link Address": "Alt + Shift + C", // 复制链接
+    "Math Block": "Ctrl + M", // 行间公式
 }
 ```
 
