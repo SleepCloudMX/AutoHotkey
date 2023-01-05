@@ -238,11 +238,19 @@ C:\ProgramData\Microsoft\Windows\Start Menu\Programs\StartUp
    <span style='background-color: #eeeeee; color: #777777'></span>
    ```
 
-   并将光标移至 `</span>` 前
+   并将光标移至 `</span>` 前.
 
-   注: 已解决延迟的问题, 但如果电脑本身运行慢, 则会替换为原剪切板里的内容.
+8. 按键: "\quote" + Enter / Tab / Space
 
-8. 按键: "\ggb" + Enter / Tab / Space
+   功能: 替换为
+
+   ```html
+   <span style="border-left: 4px solid #dfe2e5; padding: 0 15px; color: #777777;"></span>
+   ```
+
+   并将光标移至 `</span>` 前.
+
+9. 按键: "\ggb" + Enter / Tab / Space
 
    功能:
 
@@ -257,7 +265,7 @@ C:\ProgramData\Microsoft\Windows\Start Menu\Programs\StartUp
       2. 如果输入的链接也不是图像链接的话, 则会在提示后清空热字串输入命令并返回.
    3. 如果使用获取输入的功能, 注意 HTML 代码会输出到当前窗口, 而不一定是在 typora 中.
 
-9. 按键: "\ggbdef" + Enter / Tab / Space
+10. 按键: "\ggbdef" + Enter / Tab / Space
 
    功能: 在 `\ggb` 的基础上自定义图像的编号.
 
@@ -268,7 +276,7 @@ C:\ProgramData\Microsoft\Windows\Start Menu\Programs\StartUp
       1. 如果剪切板中无合法的图像链接, 则会执行与 `\ggb` 相同的异常处理程序.
       2. 如果自定义编号不符合要求, 则会在提示后清空热字串输入命令并返回.
 
-10. 按键: CapsLock + C
+11. 按键: CapsLock + C
 
     功能:
 
@@ -295,7 +303,7 @@ C:\ProgramData\Microsoft\Windows\Start Menu\Programs\StartUp
     3. 如果选中的文字本身就是 HTML 格式, 则会在取消格式后重新执行上述操作.
     4. 如果按下此快捷键后不想修改颜色了, 不要直接关闭窗口或按 Esc. 建议输入空格或 ` 后按下 Esc (单纯因为这样一只手按着舒服)
 
-11. 按键: CapsLock + V
+12. 按键: CapsLock + V
 
     功能: 恢复文字默认颜色.
 
@@ -305,7 +313,7 @@ C:\ProgramData\Microsoft\Windows\Start Menu\Programs\StartUp
     2. 上一个快捷键的 'C' 表示 color, 这里的 'v' 表示 'void'.
     3. 也可以通过上一个快捷键输入为空或空格字符, 来实现这个功能, 不过不太方便.
 
-12. 按键: Alt + T
+13. 按键: Alt + T
 
     功能: 注释 LaTeX.
 
@@ -323,18 +331,18 @@ C:\ProgramData\Microsoft\Windows\Start Menu\Programs\StartUp
 
     2. 如果选中文字, 则对每一行文字进行上述处理.
 
-13. 按键: Ctrl + W
+14. 按键: Ctrl + W
 
     功能: 保存后关闭.
 
     注: 虽然开了自动保存, 但刚打完字就关的话还是会显示烦人的弹窗问我要不要保存. 所以重写了这个快捷键.
 
-14. 按键: $$
+15. 按键: $$
 
     功能: 替换为 `$  $` 并左移两格 (不会修改输入法).
 
     备注:
-    
+
     - 行内公式的另一种快捷按键, 不能替代 Alt + M. Alt + M 可以自动控制空格, 并可以用于删除行内公式.
     - 为避免冲突, 此时可将刷新公式改为 Alt + Ctrl + M, 行间公式改为 Ctrl + M.
 

@@ -743,12 +743,12 @@ if (Mod(leftNum, 2) = 1 and Mod(rightNum, 2) = 1) {
     leftMoves := 2
 
     lastChar := SubStr(lineBefore, StrLen(lineBefore), 1)
-    if (lineBefore != "" and lastChar != " " and lastChar != "`t") {
+    if (lineBefore != "" and lastChar != " " and lastChar != "`t" and lastChar != "(" and lastChar != "（") {
         inlineMathStr := " " inlineMathStr
     }
 
     nextChar := SubStr(lineAfter, 1, 1)
-    if (lineAfter != "" and nextChar != " " and nextChar != "。") {
+    if (lineAfter != "" and nextChar != " " and nextChar != "。" and nextChar != ")" and nextChar != "）") {
         if (and nextChar != "," and nextChar != "." and nextChar != "，") {
             inlineMathStr := inlineMathStr " "
             leftMoves := leftMoves + 1
@@ -837,20 +837,30 @@ return
 
 ;-------------------------------------------------
 ;按键: "\att" + Enter
-;功能: 替换为 "<span style='background-color: #eeeeee; color: #777777'></span>"
-;并将光标移至 </span> 前
-;注: 需要等待一秒多, 期间请勿输入其它字符.
+;功能: 标注格式
 
 ::\att::
-attstr_1 := "</span>"
-attstr_2 := "<span style='background-color: #eeeeee; color: #777777'>"
 temp := Clipboard
-Clipboard := attstr_1
-Send, {Ctrl down}v{Ctrl up}{Home}
-Clipboard := attstr_2
-Send, {Ctrl down}v{Ctrl up}
+Clipboard := ""     ; 这一步是有必要的, 因为无法保障下一行被正确的运行 (悲)
+Clipboard := "<span style='background-color: #eeeeee; color: #777777'></span>"
+; 应减少粘贴的次数, 以降低出错的概率
+Send, {Ctrl down}v{Ctrl up}{Left 7}
 Clipboard := temp
 return
+
+;-------------------------------------------------
+;按键: "\quote" + Enter
+;功能: 引用格式
+
+::\quote::
+temp := Clipboard
+Clipboard := ""
+Clipboard = <span style="border-left: 4px solid #dfe2e5; padding: 0 15px; color: #777777;"></span>
+Send, {Ctrl down}v{Ctrl up}{Left 7}
+Clipboard := temp
+return
+
+
 
 ;-------------------------------------------------
 ;按键: "\ggb" + Enter / Tab / Space
