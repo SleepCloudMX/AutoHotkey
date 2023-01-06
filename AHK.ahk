@@ -1105,6 +1105,26 @@ return
 Send, $$`n  ; 我不理解, 但是放在一行里写就会多输出一个空格.
 return
 
+;-------------------------------------------------
+;按键: "\details" + Enter / Tab / Space
+;功能: HTML 点击展开内容.
+
+::\details::
+temp := Clipboard
+Clipboard := ""     ; 这一步是有必要的
+Clipboard =
+(
+<div style="background-color: #f6f4f0">
+    <details>
+        <summary><b></b></summary>
+        <iframe src="ifsrc\.html" height=600></iframe>
+    </details>
+</div>
+)
+SendMode Input
+Send, {Ctrl down}v{Ctrl up}{Up 3}{End}{Left 14}
+return
+
 #IfWinActive ; typora
 ;-------------------------------------------------
 
@@ -1236,7 +1256,7 @@ return
 temp := Clipboard
 Clipboard =
 (
-\begin{figure}
+\begin{figure}[!htbp]
     \centering
     \includegraphics[width=\textwidth]{figure/}
     \caption{}

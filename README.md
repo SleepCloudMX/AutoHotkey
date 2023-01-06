@@ -357,6 +357,17 @@ C:\ProgramData\Microsoft\Windows\Start Menu\Programs\StartUp
 
       功能: 进入行间公式.
 
+   10. 按键: `\details` + Enter / Space / Tab
+
+      功能: 生成 details 标签的代码, 效果为:
+
+      <div style="background-color: #f6f4f0">
+          <details>
+              <summary><b>点击展开</b></summary>
+              <iframe src="https://www.runoob.com/tags/tag-details.html" height=600></iframe>
+          </details>
+      </div>
+
       
 
 
