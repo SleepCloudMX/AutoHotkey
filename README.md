@@ -435,3 +435,21 @@ C:\ProgramData\Microsoft\Windows\Start Menu\Programs\StartUp
 2. 按键: Alt + -/+
 
    功能: 切换至上一标签页或下一标签页.
+
+
+
+### 六、TeXstudio 快捷键
+
+1. 按键: `\figure` + Enter / Space / Tab
+
+   功能: 替换为
+
+   ```latex
+   \begin{figure}
+       \centering
+       \includegraphics[width=\textwidth]{figure/}
+       \caption{}
+   \end{figure}
+   ```
+
+   并移至 `figure/` 后.

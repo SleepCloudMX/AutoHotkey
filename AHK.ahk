@@ -1099,12 +1099,11 @@ Send, $  ${Left 2}
 return
 
 ;-------------------------------------------------
-;按键: "\[ + Enter / Tab / Space
+;按键: "\[" + Enter / Tab / Space
 ;功能: 进入数学模式; 这个是真的方便.
 ::\[::
 Send, $$`n  ; 我不理解, 但是放在一行里写就会多输出一个空格.
 return
-
 
 #IfWinActive ; typora
 ;-------------------------------------------------
@@ -1226,3 +1225,25 @@ return
 !-::Send, {Ctrl down}{Shift down}{Tab}{Shift up}{Ctrl up}
 
 #IfWinActive ; Microsoft Edge
+
+
+
+#IfWinActive ahk_exe D:\Program Files (x86)\Tencent\TeXstudio\texstudio.exe
+;-------------------------------------------------
+;按键: "\figure" + Enter / Tab / Space
+;功能: LaTeX 格式插入图片
+::\figure::
+temp := Clipboard
+Clipboard =
+(
+\begin{figure}
+    \centering
+    \includegraphics[width=\textwidth]{figure/}
+    \caption{}
+\end{figure}
+)
+Send, {Ctrl down}v{Ctrl up}{Up 2}{End}{Left}
+Clipboard := temp
+return
+
+#IfWinActive ; TeXstudio
