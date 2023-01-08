@@ -405,11 +405,19 @@ return
 ;但之后发现了更好的做法, 即绕开输入法:
 
 :*:emos::
-ascinput(":star:")
+;ascinput(":star:")
+temp := Clipboard
+Clipboard := ":star:"
+Send, {Ctrl down}v{Ctrl up}
+Clipboard := temp
 return
 
 :*:emoc::
-ascinput(":crescent_moon:")
+;ascinput(":crescent_moon:")
+temp := Clipboard
+Clipboard := ":crescent_moon:"
+Send, {Ctrl down}v{Ctrl up}
+Clipboard := temp
 return
 
 ;-------------------------------------------------
@@ -1123,6 +1131,7 @@ Clipboard =
 )
 SendMode Input
 Send, {Ctrl down}v{Ctrl up}{Up 3}{End}{Left 14}
+Clipboard := temp
 return
 
 #IfWinActive ; typora
