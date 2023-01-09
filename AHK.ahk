@@ -863,8 +863,8 @@ return
 ::\quote::
 temp := Clipboard
 Clipboard := ""
-Clipboard = <span style="border-left: 4px solid #dfe2e5; padding: 0 15px; color: #777777;"></span>
-Send, {Ctrl down}v{Ctrl up}{Left 7}
+Clipboard = <div style="border-left: 4px solid #dfe2e5; padding: 0 15px; color: #777777; padding-right: 0;"></div>
+Send, {Ctrl down}v{Ctrl up}{Left 6}
 Clipboard := temp
 return
 
