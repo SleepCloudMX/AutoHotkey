@@ -863,8 +863,26 @@ return
 ::\quote::
 temp := Clipboard
 Clipboard := ""
-Clipboard = <div style="border-left: 4px solid #dfe2e5; padding: 0 15px; color: #777777; padding-right: 0;"></div>
-Send, {Ctrl down}v{Ctrl up}{Left 6}
+Clipboard = <span style="border-left: 4px solid #dfe2e5; padding: 0 15px; color: #777777; padding-right: 0;"></span>
+Send, {Ctrl down}v{Ctrl up}{Left 7}
+Clipboard := temp
+return
+
+
+
+;-------------------------------------------------
+;按键: "\dquote" + Enter
+;功能: 多行引用格式
+
+::\dquote::
+temp := Clipboard
+Clipboard := ""
+Clipboard =
+(
+<div style="border-left: 4px solid #dfe2e5; padding: 0 15px; color: #777777; padding-right: 0;">
+</div>
+)
+Send, {Ctrl down}v{Ctrl up}{Up}{End} ;{Enter}
 Clipboard := temp
 return
 

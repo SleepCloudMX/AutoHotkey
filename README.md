@@ -245,12 +245,24 @@ C:\ProgramData\Microsoft\Windows\Start Menu\Programs\StartUp
    功能: 替换为
 
    ```html
-   <span style="border-left: 4px solid #dfe2e5; padding: 0 15px; color: #777777;"></span>
+   <span style="border-left: 4px solid #dfe2e5; padding: 0 15px; color: #777777; padding-right: 0;"></span>
    ```
 
    并将光标移至 `</span>` 前.
 
-9. 按键: "\ggb" + Enter / Tab / Space
+   注: 支持行内公式.
+
+9. 按键: "\dquote" + Enter / Tab / Space
+
+   功能: 替换为
+
+   ```html
+   <div style="border-left: 4px solid #dfe2e5; padding: 0 15px; color: #777777; padding-right: 0;"></div>
+   ```
+
+   注: 支持多行.
+
+10. 按键: "\ggb" + Enter / Tab / Space
 
    功能:
 
@@ -265,7 +277,7 @@ C:\ProgramData\Microsoft\Windows\Start Menu\Programs\StartUp
       2. 如果输入的链接也不是图像链接的话, 则会在提示后清空热字串输入命令并返回.
    3. 如果使用获取输入的功能, 注意 HTML 代码会输出到当前窗口, 而不一定是在 typora 中.
 
-10. 按键: "\ggbdef" + Enter / Tab / Space
+11. 按键: "\ggbdef" + Enter / Tab / Space
 
    功能: 在 `\ggb` 的基础上自定义图像的编号.
 
@@ -360,7 +372,7 @@ C:\ProgramData\Microsoft\Windows\Start Menu\Programs\StartUp
    10. 按键: `\details` + Enter / Space / Tab
 
       功能: 生成 details 标签的代码, 效果为:
-
+    
       <div style="background-color: #f6f4f0">
           <details>
               <summary><b>点击展开</b></summary>
@@ -368,7 +380,8 @@ C:\ProgramData\Microsoft\Windows\Start Menu\Programs\StartUp
           </details>
       </div>
 
-      
+
+​      
 
 
 
