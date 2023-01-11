@@ -128,6 +128,12 @@ C:\ProgramData\Microsoft\Windows\Start Menu\Programs\StartUp
     功能: 禁用鼠标右键.
     备注: 因为理想键盘下还有鼠标右键...原因同上.
 
+16. 按键: Shift + Space
+
+    功能: Shift 和 Space.
+
+    备注: 没有搁着搁着呢, 之前按住 Shift 再按 Space, 无法切换输入法也无法打出空格; 按住 Space 再按 Shift, 可以打出空格但无法切换输入法. 对于打公式频繁切换输入法的我来说, 原来很是麻烦, 于是就写了这样的热键.
+
 
 
 ### 二、Typora 快捷键
@@ -301,7 +307,7 @@ C:\ProgramData\Microsoft\Windows\Start Menu\Programs\StartUp
 
       2. 输入颜色后确定, 即可通过 HTML 修改文字颜色.
 
-         - 其中输入内容可以是颜色英文名或十六进制颜色码.
+         - 其中输入内容可以是颜色英文名、RGB 或十六进制颜色码.
 
          - 如果你愿意的话, 直接关掉输入框或按 Esc 也是可以的.
 
@@ -315,6 +321,7 @@ C:\ProgramData\Microsoft\Windows\Start Menu\Programs\StartUp
       2. 如果输入为空, 或为空格字符, 则取消 HTML 格式, 恢复为默认字体. 此时文本光标不会移动.
       3. 如果选中的文字本身就是 HTML 格式, 则会在取消格式后重新执行上述操作.
       4. 如果按下此快捷键后不想修改颜色了, 不要直接关闭窗口或按 Esc. 建议输入空格或 ` 后按下 Esc (单纯因为这样一只手按着舒服)
+      5. 为了与一些主题中定义的 css 不发生冲突, 使用 `<span>` 标签而非 `<font>` 标签.
 
    4. 按键: CapsLock + V
 

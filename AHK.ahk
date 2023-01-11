@@ -383,6 +383,14 @@ return
 
 
 
+;-------------------------------------------------
+;按键: Shift + Space
+;功能: Shift, Space
+~Shift & Space::Send, {Space}{Shift down}{Shift up}
+;~Space & Shift::Send, {Shift down}{Shift up}
+
+
+
 ;----------------typora 专用快捷键-----------------
 ;以下按键只在 typora 中生效
 ;之所以分开写, 一方面是因为 typora 中的 HTML 环境会影响 Send 或 ascinput 的效果.
@@ -1009,8 +1017,9 @@ temp := Clipboard
 Clipboard := ""     ; 这是为了防止用户没有选中文字
 Send, {Ctrl down}c{Ctrl up}
 
-colorPrefix := "<font color="
-if (InStr(Clipboard, colorPrefix, false) = 1) {
+colorPrefix1 := "<font color="
+colorPrefix2 := "<span style="
+if (InStr(Clipboard, colorPrefix1, false) = 1 or InStr(Clipboard, colorPrefix2, false) = 1) {
     Clipboard := clearHTML(Clipboard)
 } ; 若已为 HTML 代码, 则取消 HTML 格式
 
@@ -1018,14 +1027,14 @@ if (InStr(Clipboard, colorPrefix, false) = 1) {
 temp2 := Clipboard
 Clipboard := temp
 textColor := ""
-InputBox, textColor, 设置颜色, 请输入颜色，可以用颜色的英文名或十六进制颜色码.`n若不输入任何内容，则默认为黑色., SHOW, , , , , , , blue
+InputBox, textColor, 设置颜色, 请输入颜色，可以用颜色的英文名、RGB 或十六进制颜色码.`n若不输入任何内容，则默认为黑色., SHOW, , , , , , , blue
 Clipboard := temp2
 
 if (textColor = "" or textColor = " " or textColor = "  " or textColor = "``") {
     ; 若为空字符串, 则不作处理, 并且没有 {Left 7}
     Send, {Ctrl down}v{Ctrl up}
 } else {
-    Clipboard := "<font color=" textColor ">" Clipboard "</font>"
+    Clipboard := "<span style=""color: " textColor """>" Clipboard "</span>"
     Send, {Ctrl down}v{Ctrl up}{Left 7}
 }
 
@@ -1140,15 +1149,16 @@ temp := Clipboard
 Clipboard := ""     ; 这一步是有必要的
 Clipboard =
 (
-<div style="background-color: #f6f4f0">
+<div style="background-color: #f3f2ee">
     <details>
-        <summary><b></b></summary>
+        <summary><b>
+        </b></summary>
         <iframe src="ifsrc\.html" height=600></iframe>
     </details>
 </div>
 )
-SendMode Input
-Send, {Ctrl down}v{Ctrl up}{Up 3}{End}{Left 14}
+; SendMode Input
+Send, {Ctrl down}v{Ctrl up}{Up 4}{End}
 Clipboard := temp
 return
 
