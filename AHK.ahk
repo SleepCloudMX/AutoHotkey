@@ -152,92 +152,44 @@ clearHTML(str) {
 ;------------------热键与热字符串-------------------
 
 ;------------------一、通用快捷键--------------------
+;按键: Alt + Ctrl + R
+;功能: 重新运行脚本
+#SingleInstance, force  ; 跳过对话框
+!^::Run AHK.ahk
+
 ;按键: Alt + I/J/K/L
 ;功能: 上下左右
+!i::Send, {Up}
+!j::Send, {Left}
+!k::Send, {Down}
+!l::Send, {Right}
 
-!i::
-Send, {Up}
-return
-
-!j::
-Send, {Left}
-return
-
-!k::
-Send, {Down}
-return
-
-!l::
-Send, {Right}
-return
-
-;-------------------------------------------------
 ;按键: Alt + H/;
 ;功能: 行首行尾
+!h::Send, {home}
+!;::Send, {end}
 
-!h::
-Send, {home}
-return
-
-!;::
-Send, {end}
-return
-
-;-------------------------------------------------
 ;按键: Alt + Shift + I/J/K/L
 ;功能: 选中字符
+!+i::Send, {Shift down}{Up}{Shift up}
+!+j::Send, {Shift down}{Left}{Shift up}
+!+k::Send, {Shift down}{Down}{Shift up}
+!+l::Send, {Shift down}{Right}{Shift up}
 
-!+i::
-Send, {Shift down}{Up}{Shift up}
-return
-
-!+j::
-Send, {Shift down}{Left}{Shift up}
-return
-
-!+k::
-Send, {Shift down}{Down}{Shift up}
-return
-
-!+l::
-Send, {Shift down}{Right}{Shift up}
-return
-
-;-------------------------------------------------
 ;按键: Alt + Shift + H/;
 ;功能: 选中这一行之前或之后的字符
+!+h::Send, {Shift down}{Home}{Shift up}
+!+;::Send, {Shift down}{End}{Shift up}
 
-!+h::
-Send, {Shift down}{Home}{Shift up}
-return
-
-!+;::
-Send, {Shift down}{End}{Shift up}
-return
-
-;-------------------------------------------------
 ;按键: Alt + Ctrl + J/L
 ;功能: 跨词移动
+!^j::Send, {Ctrl down}{Left}{Ctrl up}
+!^l::Send, {Ctrl down}{Right}{Ctrl up}
 
-!^j::
-Send, {Ctrl down}{Left}{Ctrl up}
-return
-
-!^l::
-Send, {Ctrl down}{Right}{Ctrl up}
-return
-
-;-------------------------------------------------
 ;按键: Ctrl + Alt + H/;
 ;功能: 文件开始或结尾
-
-!^h::
-Send, {Ctrl down}{Home}{Ctrl up}
-return
-
-!^;::
-Send, {Ctrl down}{End}{Ctrl up}
-return
+!^h::Send, {Ctrl down}{Home}{Ctrl up}
+!^;::Send, {Ctrl down}{End}{Ctrl up}
 
 ;-------------------------------------------------
 ;鉴于我不会用到单独的 Alt 键, 并且组合键按到会很烦, 就想把它也 ban 了
@@ -250,7 +202,6 @@ return
 ;按键: PgUp / PgDn
 ;功能: 无
 ;因为容易误触，就禁了这两个烦人的键.
-
 PgUp::return
 PgDn::return
 
@@ -271,22 +222,10 @@ return
 ;-------------------------------------------------
 ;按键: RShift + w/a/s/d
 ;功能: 页面向上/左/下/右滚动
-
->+w::
-Send, {WheelUp}
-return
-
->+s::
-Send, {WheelDown}
-return
-
->+a::
-Send, {WheelLeft}
-return
-
->+d::
-Send, {WheelRight}
-return
+>+w::Send, {WheelUp}
+>+s::Send, {WheelDown}
+>+a::Send, {WheelLeft}
+>+d::Send, {WheelRight}
 
 ;-------------------------------------------------
 ;按键: Esc + LShift
@@ -387,9 +326,9 @@ return
 ;按键: Shift + Space
 ;功能: Shift, Space
 ~Shift & Space::Send, {Space}{Shift down}{Shift up}
-;~Space & Shift::Send, {Shift down}{Shift up}
-
-
+;~Space & ~Shift::Send, {Shift down}{Shift up}
+;~Space::Shift
+ 
 
 ;----------------typora 专用快捷键-----------------
 ;以下按键只在 typora 中生效
@@ -1151,8 +1090,8 @@ Clipboard =
 (
 <div style="background-color: #f3f2ee">
     <details>
-        <summary><b>
-        </b></summary>
+        <summary>
+        </summary>
         <iframe src="ifsrc\.html" height=600></iframe>
     </details>
 </div>

@@ -41,67 +41,71 @@ C:\ProgramData\Microsoft\Windows\Start Menu\Programs\StartUp
 
 ### 一、通用快捷键
 
-1. 按键: Alt + I/J/K/L
+1. 按键: Alt + Ctrl + R
+
+   功能: 重新运行该脚本.
+
+2. 按键: Alt + I/J/K/L
 
    功能: 上下左右
 
-2. 按键: Alt + H/;
+3. 按键: Alt + H/;
 
    功能: 行首行尾
 
-3. 按键: Alt + Shift + I/J/K/L
+4. 按键: Alt + Shift + I/J/K/L
 
    功能: 选中字符
 
-4. 按键: Alt + Shift + H/;
+5. 按键: Alt + Shift + H/;
 
    功能: 选中这一行之前或之后的字符
 
-5. 按键: Alt + Ctrl + J/L
+6. 按键: Alt + Ctrl + J/L
 
    功能: 跨词移动
 
-6. 按键: Alt + Ctrl + H/;
+7. 按键: Alt + Ctrl + H/;
 
    功能: 文档的开始或结尾
 
    注: 等价于原来的 PgUp 和 PgDn
 
-7. 按键: PgUp / PgDn
+8. 按键: PgUp / PgDn
 
    功能: 无
 
    注: 因为容易误触，就禁了这两个烦人的键.
 
-8. 按键: LShift + 滚轮上下滚动
+9. 按键: LShift + 滚轮上下滚动
 
    功能: 页面向左向右滚动
 
    注: Ctrl + 滚轮上下滚动, 一般用于放大或缩小页面.
 
-9. 按键: RShift + w/a/s/d
+10. 按键: RShift + w/a/s/d
 
    功能: 页面向上/左/下/右滚动
 
    注: 因为我触控板经常失灵, 就用这个快捷键了
 
-10. 按键: Esc + LShift
+11. 按键: Esc + LShift
 
     功能: 最小化任意页面.
 
     注: 建议按下 Esc 后按 LShift, 不过先按 LShift 也是可以的. 在一些软件中, Esc 用于关闭应用内小窗, 所以这里加上了 LShift.
 
-11. 按键: CapsLock + D
+12. 按键: CapsLock + D
 
     功能: 打开我的 To Do List & Dairy.
 
     注: 我的 To Do List 既是待办事项, 也是日记, 每天经常会用到, 所以就写了这个快捷键. 日记位于 `E:/Notes/To Do List`, 命名格式是 `YYYY.MM.md`, 如 `2022.12.md`.
 
-12. 按键: CapsLock + T
+13. 按键: CapsLock + T
 
     功能: 打开 Notepad (text).
 
-13. 按键: CapsLock + S
+14. 按键: CapsLock + S
 
     功能: 搜索.
 
@@ -115,7 +119,7 @@ C:\ProgramData\Microsoft\Windows\Start Menu\Programs\StartUp
     2. 默认使用必应进行搜索, 如有需要可以去源文件修改变量 `href`.
     3. 会自动将所有回车 (Unix: `\n`, Mac: `\r`, Windows: `\r\n`) 替换为空格.
 
-14. 按键: RAlt + RCtrl + L
+15. 按键: RAlt + RCtrl + L
 
     功能: 禁用键盘 (按 Esc 重新启用键盘)
 
@@ -123,12 +127,12 @@ C:\ProgramData\Microsoft\Windows\Start Menu\Programs\StartUp
 
     注意: 极少数按键无法禁用, 比如联想电脑的 F5, F6 (调节亮度) 等. Fn 键 (SC163) 虽然可以禁用, 但无法禁用其组合键, 也不可以用 Fn 作为组合键或者控制 Fn 的抬起或按下. 这里建议按下 Fn + Esc (Fn Lock 功能), 再用该快捷键, 这样除了含 Fn 的组合键和 Esc 键之外就都可禁用了.
 
-15. 按键: RAlt + RCtrl + M
+16. 按键: RAlt + RCtrl + M
 
     功能: 禁用鼠标右键.
     备注: 因为理想键盘下还有鼠标右键...原因同上.
 
-16. 按键: Shift + Space
+17. 按键: Shift + Space
 
     功能: Shift 和 Space.
 
