@@ -1,9 +1,11 @@
-﻿#NoEnv  ; Recommended for performance and compatibility with future AutoHotkey releases.
+﻿;------------------全局设置与函数定义------------------
+#NoEnv  ; Recommended for performance and compatibility with future AutoHotkey releases.
 ; #Warn  ; Enable warnings to assist with detecting common errors.
 ; SendMode Input  ; Recommended for new scripts due to its superior speed and reliability.
 SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
+; 注意换行 `n 和 `t 间还有一个原义空格
+#Hotstring EndChars `n `t
 
-;------------------全局变量与函数定义------------------
 ;切换输入法的函数
 ;切换为英文输入法: SwitchIME(0x04090409)
 ;切换为中文输入法: SwitchIME(00000804)
@@ -99,7 +101,7 @@ isValidVarName(str, maxLen := 253) {
             isCharValid := true     ; 小写字母
         } else if (ch == 35 || ch == 36 || ch == 64 || ch == 95) {
             ifCharValid := true     ; # $ @ _
-        } ; 数字开头是云讯的
+        } ; 数字开头是允许的
 
         if (isCharValid == false) {
             return false
@@ -147,6 +149,18 @@ clearHTML(str) {
     return SubStr(str, sttPos, len)
 }
 
+;-------------------------------------------------
+; 粘贴字符串
+PasteStr(content) {
+    SendMode Event  ; 防止剪切板修改错误
+    temp := Clipboard
+    Clipboard := content
+    Send, {Ctrl down}v{Ctrl up}
+    Clipboard := temp
+}
+
+
+
 
 
 ;------------------热键与热字符串-------------------
@@ -155,7 +169,9 @@ clearHTML(str) {
 ;按键: Alt + Ctrl + R
 ;功能: 重新运行脚本
 #SingleInstance, force  ; 跳过对话框
-!^::Run AHK.ahk
+!^r::
+Run, AHK.ahk
+return
 
 ;按键: Alt + I/J/K/L
 ;功能: 上下左右
@@ -1068,14 +1084,15 @@ return
 ;-------------------------------------------------
 ;按键: $$
 ;功能: 替换为 `$  $` 并左移两格.
-:*:$$::
+:Z*:$$::
 Send, $  ${Left 2}
 return
 
 ;-------------------------------------------------
 ;按键: "\[" + Enter / Tab / Space
 ;功能: 进入数学模式; 这个是真的方便.
-::\[::
+;问号 ? 是有必要的
+:?:\[::
 Send, $$`n  ; 我不理解, 但是放在一行里写就会多输出一个空格.
 return
 
@@ -1106,10 +1123,60 @@ return
 
 
 
+
+;-----------Typora 与 Sublime 共用快捷键------------
+; 这里不再使用 #IfWinActive
+
+; 用于补全 LaTeX 环境的代码
+SendLaTeXEnv(env, isTab:=true, opt:="") {
+    if (false = WinActive("ahk_exe D:\Software\Typora\Typora.exe"))
+    ; and (false = WinActive("ahk_exe D:\Program Files (x86)\Tencent\TeXstudio\texstudio.exe"))
+    and (false = WinActive("ahk_exe D:\Software\Sublime Text\sublime_text.exe")) {
+        return
+    } ; TeXstudio 和 Typora 专用
+    SendMode Input  ; 提高输出字符的速度与稳定性
+    #LTrim, On      ; 允许多行字符串缩进, 即自动删除行首缩进与空格
+    SendRaw,
+    (
+        \begin{%env%}%opt%
+
+        \end{%env%}
+    )
+    Send, {Up}
+    if (isTab) {
+        Send {Tab}
+    }
+}
+
+; 大部分情况下都不删除首行缩进与空格
+#Ltrim, Off
+
+; 选项 X 用于执行函数, 而非取代文本 (否则一个热字串要三行代码)
+; 选项 C1 用于区分大小写
+; 选项 ? 用于保证每一次输入触发字符串时都能触发,
+; 没有 ? 的话, 反斜杠 \ 有时会被认为在另一个单词里而无法触发.
+:C1X?:\align::SendLaTeXEnv("align", false)
+:C1X?:\aligned::SendLaTeXEnv("aligned")
+:C1X?:\cases::SendLaTeXEnv("cases")
+:C1X?:\array::SendLaTeXEnv("array", false, "{c}")
+:C1X?:\equation::SendLaTeXEnv("equation", false)
+:C1X?:\gather::SendLaTeXEnv("gather", false)
+:C1X?:\eqnarray::SendLaTeXEnv("eqnarray")   ; 别用 eqnarray
+:C1X?:\matrix::SendLaTeXEnv("matrix")
+:C1X?:\pmatrix::SendLaTeXEnv("pmatrix")
+:C1X?:\bmatrix::SendLaTeXEnv("bmatrix")
+:C1X?:\Bmatrix::SendLaTeXEnv("Bmatrix")
+:C1X?:\vmatrix::SendLaTeXEnv("vmatrix")
+:C1X?:\Vmatrix::SendLaTeXEnv("Vmatrix")
+
+
+
+
+
 ;----------------sublime 专用快捷键-----------------
 ;以下快捷键只在 sublime text 中生效.
 ;之所以分开写, 是因为大部分软件没有选中多行同时输入的功能.
-#IfWinActive ahk_exe C:\Program Files\Sublime Text\sublime_text.exe
+#IfWinActive ahk_exe D:\Software\Sublime Text\sublime_text.exe
 
 ;-------------------------------------------------
 ;按键: Alt + Ctrl + I/K
@@ -1223,14 +1290,15 @@ return
 #IfWinActive ; Microsoft Edge
 
 
-
+;----------------TeXstudio 专用快捷键-----------------
+;以下快捷键只在 TeXstudio 中生效.
 #IfWinActive ahk_exe D:\Program Files (x86)\Tencent\TeXstudio\texstudio.exe
-;-------------------------------------------------
-;按键: "\figure" + Enter / Tab / Space
-;功能: LaTeX 格式插入图片
+
+;触发: \figure
+;功能: 生成 LaTeX 插入图片的代码.
+
 ::\figure::
-temp := Clipboard
-Clipboard =
+content =
 (
 \begin{figure}[!htbp]
     \centering
@@ -1238,8 +1306,8 @@ Clipboard =
     \caption{}
 \end{figure}
 )
-Send, {Ctrl down}v{Ctrl up}{Up 2}{End}{Left}
-Clipboard := temp
+PasteStr(content)
+Send, {Up 2}{End}{Left}
 return
 
-#IfWinActive ; TeXstudio
+#IfWinActive ; TeXStudio

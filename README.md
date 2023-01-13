@@ -391,8 +391,11 @@ C:\ProgramData\Microsoft\Windows\Start Menu\Programs\StartUp
           </details>
       </div>
 
+11. 触发: \align, \aligned, \cases, \array, \equation, \gather, \eqnarray, \matrix, \pmatrix, \bmatrix, \Bmatrix, \vmatrix, \Vmatrix.
 
-​      
+    功能: 补全相应的 LaTeX 代码.
+
+
 
 
 
