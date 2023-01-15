@@ -367,21 +367,15 @@ return
 ;Send, :star:
 ;但之后发现了更好的做法, 即绕开输入法:
 
-:*:emos::
-;ascinput(":star:")
-temp := Clipboard
-Clipboard := ":star:"
-Send, {Ctrl down}v{Ctrl up}
-Clipboard := temp
-return
+; 思路 1
+:X*:emos::ascinput(":star:")
+; 思路 2
+;:X*:emos::PasteStr(":star:")
 
-:*:emoc::
-;ascinput(":crescent_moon:")
-temp := Clipboard
-Clipboard := ":crescent_moon:"
-Send, {Ctrl down}v{Ctrl up}
-Clipboard := temp
-return
+; 思路 1
+:X*:emoc::ascinput(":crescent_moon:")
+; 思路 2
+;:X*:emos::PasteStr(":crescent_moon:")
 
 ;-------------------------------------------------
 ;按键: Alt + 1~7
@@ -392,8 +386,8 @@ clipTemp := Clipboard
 Clipboard := ""     ; 这是好习惯 (不然电脑卡顿会很难受...)
 
 Send, {Home}{Ctrl down}lc{Ctrl up}  ; 这里的 {home} 是有必要的, 如果用户在使用快捷键前已选中整行, 且从右向左勾选, 则该快捷键无法正常使用.
-titlePrefix := "<h"    ; 注意到用户可能会用 <h1> 或 <h2 align="center">
-thisTitlePrefix := "<h1"
+titlePrefix := "<h"
+thisTitlePrefix := "<h1"    ; 注意到用户可能会用 <h1> 或 <h2 align="center">
 if (InStr(Clipboard, thisTitlePrefix, false) = 1) {
     Clipboard := clearHTML(Clipboard)
 } else if (InStr(Clipboard, titlePrefix, false) = 1) {
@@ -797,7 +791,7 @@ return
 
 ::\img::
 imgstr_1 := "<img src='image\"
-imgstr_2 := ".png' width=450>"
+imgstr_2 := ".png' width=450 />"
 temp := Clipboard
 Clipboard := imgstr_2
 Send, {Ctrl down}v{Ctrl up}{Home}
@@ -805,6 +799,12 @@ Clipboard := imgstr_1
 Send, {Ctrl down}v{Ctrl up}
 Clipboard := temp
 return
+
+; ::\img::
+; PasteStr("<img src=""image\.png"" width=450 />")
+; SendMode Input
+; Send, {Left 17}
+; return
 
 ;-------------------------------------------------
 ;按键: "\att" + Enter
