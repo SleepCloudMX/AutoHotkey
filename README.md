@@ -395,6 +395,10 @@ C:\ProgramData\Microsoft\Windows\Start Menu\Programs\StartUp
 
     功能: 补全相应的 LaTeX 代码.
 
+12. 触发: \frac, \dfrac, \tfrac, \cfrac, \binom, \dbinom, \overset 等.
+
+    功能: 补全括号.
+
 
 
 

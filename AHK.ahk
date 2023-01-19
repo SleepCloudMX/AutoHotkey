@@ -788,6 +788,7 @@ return
 ;按键: "img" + Enter
 ;功能: 替换为 "<img src='image\.png' width=450>" 并将光标移至 .png 前
 ;注: 需要等待约 1.0 秒, 期间请勿输入其它字符. (已修复)
+; 由于不同环境下 typora 的自动补全机制不同, 不能直接输出, 只能采用复制粘贴的方式.
 
 ::\img::
 imgstr_1 := "<img src='image\"
@@ -1152,24 +1153,54 @@ SendLaTeXEnv(env, isTab:=true, opt:="") {
 #Ltrim, Off
 
 ; 选项 X 用于执行函数, 而非取代文本 (否则一个热字串要三行代码)
-; 选项 C1 用于区分大小写
+; 选项 C 用于区分大小写
 ; 选项 ? 用于保证每一次输入触发字符串时都能触发,
 ; 没有 ? 的话, 反斜杠 \ 有时会被认为在另一个单词里而无法触发.
-:C1X?:\align::SendLaTeXEnv("align", false)
-:C1X?:\aligned::SendLaTeXEnv("aligned")
-:C1X?:\cases::SendLaTeXEnv("cases")
-:C1X?:\array::SendLaTeXEnv("array", false, "{c}")
-:C1X?:\equation::SendLaTeXEnv("equation", false)
-:C1X?:\gather::SendLaTeXEnv("gather", false)
-:C1X?:\eqnarray::SendLaTeXEnv("eqnarray")   ; 别用 eqnarray
-:C1X?:\matrix::SendLaTeXEnv("matrix")
-:C1X?:\pmatrix::SendLaTeXEnv("pmatrix")
-:C1X?:\bmatrix::SendLaTeXEnv("bmatrix")
-:C1X?:\Bmatrix::SendLaTeXEnv("Bmatrix")
-:C1X?:\vmatrix::SendLaTeXEnv("vmatrix")
-:C1X?:\Vmatrix::SendLaTeXEnv("Vmatrix")
+:CX?:\align::SendLaTeXEnv("align", false)
+:CX?:\aligned::SendLaTeXEnv("aligned")
+:CX?:\cases::SendLaTeXEnv("cases")
+:CX?:\array::SendLaTeXEnv("array", false, "{c}")
+:CX?:\equation::SendLaTeXEnv("equation", false)
+:CX?:\gather::SendLaTeXEnv("gather", false)
+:CX?:\eqnarray::SendLaTeXEnv("eqnarray")   ; 别用 eqnarray
+:CX?:\matrix::SendLaTeXEnv("matrix")
+:CX?:\pmatrix::SendLaTeXEnv("pmatrix")
+:CX?:\bmatrix::SendLaTeXEnv("bmatrix")
+:CX?:\Bmatrix::SendLaTeXEnv("Bmatrix")
+:CX?:\vmatrix::SendLaTeXEnv("vmatrix")
+:CX?:\Vmatrix::SendLaTeXEnv("Vmatrix")
 
 
+
+; 星号表示无需终止符来触发热字串
+; B0 表示不进行自动退格来擦除输入的缩写
+; {}} 用于转义 }
+; {{} 用于转义 { (好奇怪的转义方式...)
+; 注: 不要通过调用函数输出, 虽然方便, 但是在 SendMode 不是 Input 的情况下很慢,
+; 使用复制粘贴的方式不稳定, 也不建议使用.
+
+; 两对括号
+:*B0C?:\frac{::{}}{{}{}}{Left 3}
+:*B0C?:\dfrac{::{}}{{}{}}{Left 3}
+:*B0C?:\tfrac{::{}}{{}{}}{Left 3}
+:*B0C?:\cfrac{::{}}{{}{}}{Left 3}
+
+:*B0C?:\binom{::{}}{{}{}}{Left 3}
+:*B0C?:\dbinom{::{}}{{}{}}{Left 3}
+:*B0C?:\overset{::{}}{{}{}}{Left 3}
+
+:*B0C?:\soneto{::{}}{{}{}}{Left 3}
+:*B0C?:\splus{::{}}{{}{}}{Left 3}
+:*B0C?:\ddf{::{}}{{}{}}{Left 3}
+:*B0C?:\pvcn{::{}}{{}{}}{Left 3}
+:*B0C?:\DV{::{}}{{}{}}{Left 3}
+
+; 三对括号
+:*B0C?:\ssto{::{}}{{}{}}{{}{}}{Left 5}
+:*B0C?:\ssup{::{}}{{}{}}{{}{}}{Left 5}
+:*B0C?:\dddf{::{}}{{}{}}{{}{}}{Left 5}
+:*B0C?:\pmcmn{::{}}{{}{}}{{}{}}{Left 5}
+:*B0C?:\nDV{::{}}{{}{}}{{}{}}{Left 5}
 
 
 
