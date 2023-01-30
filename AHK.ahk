@@ -983,6 +983,7 @@ if (InStr(Clipboard, colorPrefix1, false) = 1 or InStr(Clipboard, colorPrefix2, 
 temp2 := Clipboard
 Clipboard := temp
 textColor := ""
+; SwitchIME(0x04090409)
 InputBox, textColor, 设置颜色, 请输入颜色，可以用颜色的英文名、RGB 或十六进制颜色码.`n若不输入任何内容，则默认为黑色., SHOW, , , , , , , blue
 Clipboard := temp2
 
@@ -1129,12 +1130,13 @@ return
 ; 这里不再使用 #IfWinActive
 
 ; 用于补全 LaTeX 环境的代码
+; env 是环境名, isTab 指是否缩进, opt 是环境的可选项
 SendLaTeXEnv(env, isTab:=true, opt:="") {
-    if (false = WinActive("ahk_exe D:\Software\Typora\Typora.exe"))
-    ; and (false = WinActive("ahk_exe D:\Program Files (x86)\Tencent\TeXstudio\texstudio.exe"))
-    and (false = WinActive("ahk_exe D:\Software\Sublime Text\sublime_text.exe")) {
+    if !WinActive("ahk_exe D:\Software\Typora\Typora.exe")
+    ; and !WinActive("ahk_exe D:\Program Files (x86)\Tencent\TeXstudio\texstudio.exe")
+    and !WinActive("ahk_exe D:\Software\Sublime Text\sublime_text.exe") {
         return
-    } ; TeXstudio 和 Typora 专用
+    } ; 仅 Typora 和 Sublime 使用
     SendMode Input  ; 提高输出字符的速度与稳定性
     #LTrim, On      ; 允许多行字符串缩进, 即自动删除行首缩进与空格
     SendRaw,
@@ -1145,7 +1147,7 @@ SendLaTeXEnv(env, isTab:=true, opt:="") {
     )
     Send, {Up}
     if (isTab) {
-        Send {Tab}
+        Send, {Tab}
     }
 }
 
@@ -1169,6 +1171,13 @@ SendLaTeXEnv(env, isTab:=true, opt:="") {
 :CX?:\Bmatrix::SendLaTeXEnv("Bmatrix")
 :CX?:\vmatrix::SendLaTeXEnv("vmatrix")
 :CX?:\Vmatrix::SendLaTeXEnv("Vmatrix")
+
+:CX?:\mat::SendLaTeXEnv("mat", true, "{c}")
+:CX?:\pmat::SendLaTeXEnv("pmat", true, "{c}")
+:CX?:\bmat::SendLaTeXEnv("bmat", true, "{c}")
+:CX?:\Bmat::SendLaTeXEnv("Bmat", true, "{c}")
+:CX?:\vmat::SendLaTeXEnv("vmat", true, "{c}")
+:CX?:\Vmat::SendLaTeXEnv("Vmat", true, "{c}")
 
 
 

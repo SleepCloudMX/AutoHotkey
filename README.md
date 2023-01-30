@@ -399,6 +399,10 @@ C:\ProgramData\Microsoft\Windows\Start Menu\Programs\StartUp
 
     功能: 补全括号.
 
+13. 触发: \mat, \pmat, \bmat, \Bmat, \vmat, \Vmat.
+
+    功能: 补全相应的 LaTeX 代码. (需要预先定义这些环境).
+
 
 
 
