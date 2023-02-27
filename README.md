@@ -4,7 +4,7 @@
 
 我写快捷键主要是想替换掉那几个很小容易按错的上下左右键 (尤其是容易按到 PgUp 和 PgDn), 使打字更方便一点. 之后也逐渐增加了一些其它的功能.
 
-想要使用的话, 先去 [官网](https://www.autohotkey.com/) 下载 AutoHotkey (软件自带教程), 双击 AHK.ahk 文件即可运行程序. 更新: 发现了 [中文教程](https://wyagd001.github.io/zh-cn/docs/AutoHotkey.htm).
+想要使用的话, 先去 [官网](https://www.autohotkey.com/) 下载 AutoHotkey (软件自带教程), 双击 AHK.ahk 文件即可运行程序. 更新: 发现了 [中文教程](https://wyagd001.github.io/zh-cn/docs).
 
 电脑每次开机时都需要运行才能使用, 如需设置开机自启, 在如下文件夹中放入 AHK.ahk 文件的快捷方式即可:
 C:\ProgramData\Microsoft\Windows\Start Menu\Programs\StartUp
@@ -95,17 +95,23 @@ C:\ProgramData\Microsoft\Windows\Start Menu\Programs\StartUp
 
     注: 建议按下 Esc 后按 LShift, 不过先按 LShift 也是可以的. 在一些软件中, Esc 用于关闭应用内小窗, 所以这里加上了 LShift.
 
-12. 按键: CapsLock + D
+12. 按键: Shift + NumLock
+
+    功能: 只有这样才能关闭 / 启用数字锁.
+
+    备注: 因为按 '\\' 时容易误触, 就设置成这样了.
+
+13. 按键: CapsLock + D
 
     功能: 打开我的 To Do List & Dairy.
 
     注: 我的 To Do List 既是待办事项, 也是日记, 每天经常会用到, 所以就写了这个快捷键. 日记位于 `E:/Notes/To Do List`, 命名格式是 `YYYY.MM.md`, 如 `2022.12.md`.
 
-13. 按键: CapsLock + T
+14. 按键: CapsLock + T
 
     功能: 打开 Notepad (text).
 
-14. 按键: CapsLock + S
+15. 按键: CapsLock + S
 
     功能: 搜索.
 
@@ -119,7 +125,7 @@ C:\ProgramData\Microsoft\Windows\Start Menu\Programs\StartUp
     2. 默认使用必应进行搜索, 如有需要可以去源文件修改变量 `href`.
     3. 会自动将所有回车 (Unix: `\n`, Mac: `\r`, Windows: `\r\n`) 替换为空格.
 
-15. 按键: RAlt + RCtrl + L
+16. 按键: RAlt + RCtrl + L
 
     功能: 禁用键盘 (按 Esc 重新启用键盘)
 
@@ -127,12 +133,12 @@ C:\ProgramData\Microsoft\Windows\Start Menu\Programs\StartUp
 
     注意: 极少数按键无法禁用, 比如联想电脑的 F5, F6 (调节亮度) 等. Fn 键 (SC163) 虽然可以禁用, 但无法禁用其组合键, 也不可以用 Fn 作为组合键或者控制 Fn 的抬起或按下. 这里建议按下 Fn + Esc (Fn Lock 功能), 再用该快捷键, 这样除了含 Fn 的组合键和 Esc 键之外就都可禁用了.
 
-16. 按键: RAlt + RCtrl + M
+17. 按键: RAlt + RCtrl + M
 
     功能: 禁用鼠标右键.
     备注: 因为理想键盘下还有鼠标右键...原因同上.
 
-17. 按键: Shift + Space
+18. 按键: Shift + Space
 
     功能: Shift 和 Space.
 

@@ -254,6 +254,18 @@ Send, {Shift up}{Alt down}{Space}n{Alt up}
 return
 
 ;-------------------------------------------------
+;按键: Shift + NumLock
+;功能: 只有这样才能关闭或启用数字锁
+;注: 因为我经常误触, 就这样设置了
+
+NumLock::
+; 判断按键是否按下的函数
+if GetKeyState(Shift, "F") {
+    return
+}
+return
+
+;-------------------------------------------------
 ;按键: CapsLock + D
 ;功能: 打开我的 To Do List & Diary
 ~CapsLock & D::Run E:\Notes\To Do List\%A_YYYY%.%A_MM%.md
@@ -336,14 +348,29 @@ return
 ;功能: 禁用鼠标
 >!>^m::run utility\disableMouse.ahk
 
-
-
 ;-------------------------------------------------
 ;按键: Shift + Space
 ;功能: Shift, Space
 ~Shift & Space::Send, {Space}{Shift down}{Shift up}
 ;~Space & ~Shift::Send, {Shift down}{Shift up}
 ;~Space::Shift
+
+;-------------------------------------------------
+;触发: mma
+;替换: mathematica
+; Typora 中代码环境有 JavaScript 也有 js, 有 mathematica 但是没有 mma...
+:C?*:``````mma::``````mathematica
+:C?*:\mma`n::``````mathematica`n
+:C?*:\mma ::``````mathematica`n
+
+;-------------------------------------------------
+
+; B0 表示保留触发字符串, X 表示执行函数而非替换文本
+:B0*:(**::
+SendMode Input
+Send, {Left}{Space 2}{Left}
+return
+
  
 
 ;----------------typora 专用快捷键-----------------
