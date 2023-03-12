@@ -1136,14 +1136,36 @@ Clipboard =
 (
 <div style="background-color: #f3f2ee">
     <details>
-        <summary>
-        </summary>
+        <summary><b>
+        </b></summary>
         <iframe src="ifsrc\.html" height=600></iframe>
     </details>
 </div>
 )
 ; SendMode Input
 Send, {Ctrl down}v{Ctrl up}{Up 4}{End}
+Clipboard := temp
+return
+
+;-------------------------------------------------
+;按键: "\proof" + Enter / Tab / Space
+;功能: HTML 点击展开证明.
+
+::\proof::
+temp := Clipboard
+Clipboard := ""     ; 这一步是有必要的
+Clipboard =
+(
+<div style="background-color: #f3f2ee">
+    <details>
+        <summary><b>证明</b>
+        </summary>
+        <iframe src="ifsrc\.html" height=600></iframe>
+    </details>
+</div>
+)
+; SendMode Input
+Send, {Ctrl down}v{Ctrl up}{Up 4}{End}{Left}{Down 2}{Right}
 Clipboard := temp
 return
 

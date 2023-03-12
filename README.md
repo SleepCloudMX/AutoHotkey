@@ -382,30 +382,37 @@ C:\ProgramData\Microsoft\Windows\Start Menu\Programs\StartUp
       - 行内公式的另一种快捷按键, 不能替代 Alt + M. Alt + M 可以自动控制空格, 并可以用于删除行内公式.
       - 为避免冲突, 此时可将刷新公式改为 Alt + Ctrl + M, 行间公式改为 Ctrl + M.
 
-   9. 按键: `\[` + Space / Tab
+   9. 触发: `\[` + Space / Tab
 
       功能: 进入行间公式.
 
-   10. 按键: `\details` + Enter / Space / Tab
+   10. 触发: `\details` + Enter / Space / Tab
 
-      功能: 生成 details 标签的代码, 效果为:
-    
-      <div style="background-color: #f6f4f0">
-          <details>
-              <summary><b>点击展开</b></summary>
-              <iframe src="https://www.runoob.com/tags/tag-details.html" height=600></iframe>
-          </details>
-      </div>
+       功能: 生成 details 标签的代码, 效果为:
 
-11. 触发: \align, \aligned, \cases, \array, \equation, \gather, \eqnarray, \matrix, \pmatrix, \bmatrix, \Bmatrix, \vmatrix, \Vmatrix.
+       ```html
+       <div style="background-color: #f3f2ee">
+           <details>
+               <summary><b>
+               </b></summary>
+               <iframe src="ifsrc\.html" height=600></iframe>
+           </details>
+       </div>
+       ```
+
+11. 触发: `\proof` + Enter / Space / Tab
+
+    功能: 同上, 内容替换为 "证明".
+
+12. 触发: \align, \aligned, \cases, \array, \equation, \gather, \eqnarray, \matrix, \pmatrix, \bmatrix, \Bmatrix, \vmatrix, \Vmatrix.
 
     功能: 补全相应的 LaTeX 代码.
 
-12. 触发: \frac, \dfrac, \tfrac, \cfrac, \binom, \dbinom, \overset 等.
+13. 触发: \frac, \dfrac, \tfrac, \cfrac, \binom, \dbinom, \overset 等.
 
     功能: 补全括号.
 
-13. 触发: \mat, \pmat, \bmat, \Bmat, \vmat, \Vmat.
+14. 触发: \mat, \pmat, \bmat, \Bmat, \vmat, \Vmat.
 
     功能: 补全相应的 LaTeX 代码. (需要预先定义这些环境).
 
