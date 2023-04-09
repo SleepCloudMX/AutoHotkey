@@ -144,6 +144,14 @@ C:\ProgramData\Microsoft\Windows\Start Menu\Programs\StartUp
 
     备注: 没有搁着搁着呢, 之前按住 Shift 再按 Space, 无法切换输入法也无法打出空格; 按住 Space 再按 Shift, 可以打出空格但无法切换输入法. 对于打公式频繁切换输入法的我来说, 原来很是麻烦, 于是就写了这样的热键.
 
+19. 按键: Alt + /
+    功能: 输出顿号
+    注: 因为我一般使用英文标点, 但是顿号又很常用, 就写了这个.
+
+20. 触发: `~ + 1/2/3/4`
+    功能: 分别输出 -, –, —, ⸺
+    注: 分别对于 hyphen, en hyphen, em hyphen, 中文破折号.
+
 
 
 ### 二、Typora 快捷键
@@ -386,7 +394,16 @@ C:\ProgramData\Microsoft\Windows\Start Menu\Programs\StartUp
 
       功能: 进入行间公式.
 
-   10. 触发: `\details` + Enter / Space / Tab
+   10. 触发: __
+
+      功能: 替换为 `~~` 并左移一格.
+      备注: 这样写下标比较方便.
+
+   11. 触发: ^^
+       功能: 不替换, 左移一格.
+       备注: 上标.
+
+   12. 触发: `\details` + Enter / Space / Tab
 
        功能: 生成 details 标签的代码, 效果为:
 
@@ -400,19 +417,19 @@ C:\ProgramData\Microsoft\Windows\Start Menu\Programs\StartUp
        </div>
        ```
 
-11. 触发: `\proof` + Enter / Space / Tab
+13. 触发: `\proof` + Enter / Space / Tab
 
     功能: 同上, 内容替换为 "证明".
 
-12. 触发: \align, \aligned, \cases, \array, \equation, \gather, \eqnarray, \matrix, \pmatrix, \bmatrix, \Bmatrix, \vmatrix, \Vmatrix.
+14. 触发: \align, \aligned, \cases, \array, \equation, \gather, \eqnarray, \matrix, \pmatrix, \bmatrix, \Bmatrix, \vmatrix, \Vmatrix.
 
     功能: 补全相应的 LaTeX 代码.
 
-13. 触发: \frac, \dfrac, \tfrac, \cfrac, \binom, \dbinom, \overset 等.
+15. 触发: \frac, \dfrac, \tfrac, \cfrac, \binom, \dbinom, \overset 等.
 
     功能: 补全括号.
 
-14. 触发: \mat, \pmat, \bmat, \Bmat, \vmat, \Vmat.
+16. 触发: \mat, \pmat, \bmat, \Bmat, \vmat, \Vmat.
 
     功能: 补全相应的 LaTeX 代码. (需要预先定义这些环境).
 
