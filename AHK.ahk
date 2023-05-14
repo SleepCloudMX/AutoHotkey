@@ -291,6 +291,24 @@ return
 ;功能: 打开 Notepad (text)
 ~CapsLock & T::Run notepad
 
+;-------------------------------------------------
+;按键: CapsLock + N
+;功能: 打开 Mathematica 的 Notebook
+~CapsLock & N::
+mmaFolder := "D:\AppData\Mathematica\draft\"
+mmaFolder := mmaFolder A_YYYY "." A_MM
+
+if (FileExist(mmaFolder) != "D") {
+    FileCreateDir, %mmaFolder%
+} ; 如果文件夹不存在, 则创建文件夹
+mmaFile := mmaFolder "\" A_MM "." A_DD ".nb"
+
+if (!FileExist(mmaFile)) {
+    FileAppend, Notebook[{}], %mmaFile%
+} ; 如果 nb 文件不存在, 则创建 nb 文件
+
+Run, %mmaFile%
+return
 
 ;-------------------------------------------------
 ;按键: CapsLock + S
@@ -378,8 +396,8 @@ return
 ;功能: 输出顿号
 ;注: 因为我一般使用英文标点, 但是顿号又很常用, 就写了这个.
 !/::Send 、
-!,::Send 《
-!.::Send 》
+!,::Send 《》{Left}
+!.::Send 。
 
 ;-------------------------------------------------
 ;触发: ~ + 1/2/3/4
@@ -390,7 +408,70 @@ return
 ~~ & 3::Send {Backspace}—
 ~~ & 4::Send {Backspace}⸺
 
- 
+;-------------------------------------------------
+;触发: `omega` 等
+;功能: 输出希腊字母
+;注: 在 mathematica 也可以用哦~
+
+; 小写希腊字母
+:*C0:``alpha``::α
+:*C0:``beta``::β
+:*C0:``gamma``::γ
+:*C0:``deleta``::δ
+:*C0:``epsilon``::ϵ
+:*C0:``zeta``::ζ
+:*C0:``eta``::η
+:*C0:``theta``::θ
+:*C0:``iota``::ι
+:*C0:``kappa``::κ
+:*C0:``lambda``::λ
+:*C0:``mu``::μ
+:*C0:``nu``::ν
+:*C0:``xi``::ξ
+:*C0:``omicron``::ο
+:*C0:``pi``::π
+:*C0:``rho``::ρ
+:*C0:``sigma``::σ
+:*C0:``tau``::τ
+:*C0:``upsilon``::υ
+:*C0:``phi``::ϕ     ; it's not curl phi!!! What a terrible font
+:*C0:``chi``::χ
+:*C0:``psi``::ψ
+:*C0:``omega``::ω
+
+:*C0:``varepsilon``::ε
+:*C0:``varsigma``::ς
+:*C0:``varphi``::φ   ; it's curl phi!!!
+:*C0:``vartheta``::ϑ
+
+; 大写希腊字母
+:*C0:``Alpha``::Α
+:*C0:``Beta``::Β
+:*C0:``Gamma``::Γ
+:*C0:``Deleta``::Δ
+:*C0:``Epsilon``::Ε
+:*C0:``Zeta``::Ζ
+:*C0:``Eta``::Η
+:*C0:``Theta``::Θ
+:*C0:``Iota``::Ι
+:*C0:``Kappa``::Κ
+:*C0:``Lambda``::Λ
+:*C0:``Mu``::Μ
+:*C0:``Nu``::Ν
+:*C0:``Xi``::Ξ
+:*C0:``Omicron``::Ο
+:*C0:``Pi``::Π
+:*C0:``Rho``::Ρ
+:*C0:``Sigma``::Σ
+:*C0:``Tau``::Τ
+:*C0:``Upsilon``::Υ
+:*C0:``Phi``::Φ
+:*C0:``Chi``::Χ
+:*C0:``Psi``::Ψ
+:*C0:``Omega``::Ω
+
+
+
 
 ;----------------typora 专用快捷键-----------------
 ;以下按键只在 typora 中生效
@@ -1132,7 +1213,7 @@ return
 ;-------------------------------------------------
 ;按键: $$
 ;功能: 替换为 `$  $` 并左移两格.
-:Z*:$$::
+:?Z*:$$::
 Send, $  ${Left 2}
 return
 

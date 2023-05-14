@@ -111,7 +111,13 @@ C:\ProgramData\Microsoft\Windows\Start Menu\Programs\StartUp
 
     功能: 打开 Notepad (text).
 
-15. 按键: CapsLock + S
+15. 按键: CapsLock + N
+
+    功能: 打开 Mathematica 的文件, 位置在 `D:\AppData\Mathematica\draft\%A_YYYY%.%A_MM%\%A_MM%.%A_DD%.nb`
+
+    根据日期自动选择的打开的文件.
+
+16. 按键: CapsLock + S
 
     功能: 搜索.
 
@@ -125,7 +131,7 @@ C:\ProgramData\Microsoft\Windows\Start Menu\Programs\StartUp
     2. 默认使用必应进行搜索, 如有需要可以去源文件修改变量 `href`.
     3. 会自动将所有回车 (Unix: `\n`, Mac: `\r`, Windows: `\r\n`) 替换为空格.
 
-16. 按键: RAlt + RCtrl + L
+17. 按键: RAlt + RCtrl + L
 
     功能: 禁用键盘 (按 Esc 重新启用键盘)
 
@@ -133,24 +139,33 @@ C:\ProgramData\Microsoft\Windows\Start Menu\Programs\StartUp
 
     注意: 极少数按键无法禁用, 比如联想电脑的 F5, F6 (调节亮度) 等. Fn 键 (SC163) 虽然可以禁用, 但无法禁用其组合键, 也不可以用 Fn 作为组合键或者控制 Fn 的抬起或按下. 这里建议按下 Fn + Esc (Fn Lock 功能), 再用该快捷键, 这样除了含 Fn 的组合键和 Esc 键之外就都可禁用了.
 
-17. 按键: RAlt + RCtrl + M
+18. 按键: RAlt + RCtrl + M
 
     功能: 禁用鼠标右键.
     备注: 因为理想键盘下还有鼠标右键...原因同上.
 
-18. 按键: Shift + Space
+19. 按键: Shift + Space
 
     功能: Shift 和 Space.
 
     备注: 没有搁着搁着呢, 之前按住 Shift 再按 Space, 无法切换输入法也无法打出空格; 按住 Space 再按 Shift, 可以打出空格但无法切换输入法. 对于打公式频繁切换输入法的我来说, 原来很是麻烦, 于是就写了这样的热键.
 
-19. 按键: Alt + /
-    功能: 输出顿号
+20. 按键: Alt + / 或 , 或 .
+    功能: 输出顿号，或《，或》
     注: 因为我一般使用英文标点, 但是顿号又很常用, 就写了这个.
 
-20. 触发: `~ + 1/2/3/4`
+21. 触发: `~ + 1/2/3/4`
     功能: 分别输出 -, –, —, ⸺
     注: 分别对于 hyphen, en hyphen, em hyphen, 中文破折号.
+
+22. 触发：\`phi\`、\`Phi\`、\`varphi\` 等
+
+    功能：
+
+    1. 替换为相应希腊字母（共 24 个小写、24 个大写、4 个变体希腊字母）；
+    2. 如果在 mathematica 中使用，则会被自动转义为 `\[phi]` 等，效果与 Esc + phi + Esc 相同.
+
+    
 
 
 
